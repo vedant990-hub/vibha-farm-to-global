@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, Phone, Mail } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -9,12 +10,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const location = useLocation();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -47,42 +43,36 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
           </div>
 
           <nav className="hidden lg:flex items-center gap-8">
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="text-foreground hover:text-primary transition-colors"
+            <Link 
+              to="/about"
+              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/about' ? 'text-primary font-medium' : ''}`}
             >
               About Us
-            </button>
-            <button 
-              onClick={() => scrollToSection('products')}
-              className="text-foreground hover:text-primary transition-colors"
+            </Link>
+            <Link 
+              to="/products"
+              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/products' ? 'text-primary font-medium' : ''}`}
             >
               Products
-            </button>
-            <button 
-              onClick={() => scrollToSection('why-choose')}
-              className="text-foreground hover:text-primary transition-colors"
+            </Link>
+            <Link 
+              to="/global-reach"
+              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/global-reach' ? 'text-primary font-medium' : ''}`}
             >
-              Why Choose Us
-            </button>
-            <button 
-              onClick={() => scrollToSection('testimonials')}
-              className="text-foreground hover:text-primary transition-colors"
+              Global Reach
+            </Link>
+            <Link 
+              to="/testimonials"
+              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/testimonials' ? 'text-primary font-medium' : ''}`}
             >
               Testimonials
-            </button>
-            <button 
-              onClick={() => scrollToSection('global-presence')}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Global Presence
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="text-foreground hover:text-primary transition-colors"
+            </Link>
+            <Link 
+              to="/contact"
+              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/contact' ? 'text-primary font-medium' : ''}`}
             >
               Contact
-            </button>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-4">
