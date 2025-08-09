@@ -8,53 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 120 40% 10%;
+    --background: 0 0% 97%; /* Soft White/Light Gray #F8F9FA */
+    --foreground: 0 0% 20%; /* Deep Charcoal #333333 */
 
     --card: 0 0% 100%;
-    --card-foreground: 120 40% 10%;
+    --card-foreground: 0 0% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 120 40% 10%;
+    --popover-foreground: 0 0% 20%;
 
-    /* Agricultural Green - Primary brand color */
-    --primary: 120 60% 25%;
+    /* Dark Forest Green - Primary brand color #1B4332 */
+    --primary: 120 40% 15%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 120 65% 20%;
+    --primary-hover: 120 45% 12%;
 
-    /* Saffron - Secondary brand color */
-    --secondary: 30 95% 55%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 30 90% 50%;
+    /* Light Sage Green - Secondary brand color #D8F3DC */
+    --secondary: 120 60% 90%;
+    --secondary-foreground: 120 40% 15%;
+    --secondary-hover: 120 55% 85%;
 
-    /* Gold - Accent color for premium elements */
-    --accent: 45 85% 50%;
-    --accent-foreground: 120 40% 10%;
-    --accent-hover: 45 80% 45%;
+    /* Gold/Mustard - Accent color for CTAs #FFC107 */
+    --accent: 45 100% 51%;
+    --accent-foreground: 0 0% 20%;
+    --accent-hover: 45 95% 46%;
 
     /* Muted tones */
-    --muted: 45 15% 95%;
-    --muted-foreground: 120 25% 35%;
+    --muted: 120 10% 95%;
+    --muted-foreground: 0 0% 40%;
 
     /* Destructive */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 120 25% 85%;
-    --input: 120 25% 85%;
-    --ring: 120 60% 25%;
+    --border: 120 20% 85%;
+    --input: 120 20% 85%;
+    --ring: 120 40% 15%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(120 60% 25%), hsl(120 65% 35%));
-    --gradient-saffron: linear-gradient(135deg, hsl(30 95% 55%), hsl(35 90% 60%));
-    --gradient-gold: linear-gradient(135deg, hsl(45 85% 50%), hsl(50 80% 55%));
-    --gradient-hero: linear-gradient(135deg, hsl(120 60% 25%) 0%, hsl(30 95% 55%) 50%, hsl(45 85% 50%) 100%);
+    /* Professional Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(120 40% 15%), hsl(120 45% 20%));
+    --gradient-secondary: linear-gradient(135deg, hsl(120 60% 90%), hsl(120 55% 85%));
+    --gradient-accent: linear-gradient(135deg, hsl(45 100% 51%), hsl(45 95% 46%));
+    --gradient-hero: linear-gradient(135deg, hsl(120 40% 15%) 0%, hsl(120 45% 25%) 50%, hsl(45 100% 51%) 100%);
 
-    /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(120 60% 25% / 0.1);
-    --shadow-medium: 0 8px 30px hsl(120 60% 25% / 0.15);
-    --shadow-strong: 0 12px 40px hsl(120 60% 25% / 0.2);
+    /* Professional Shadows */
+    --shadow-soft: 0 2px 8px hsl(120 40% 15% / 0.08);
+    --shadow-medium: 0 4px 16px hsl(120 40% 15% / 0.12);
+    --shadow-strong: 0 8px 24px hsl(120 40% 15% / 0.16);
 
     --radius: 0.5rem;
 
@@ -134,7 +134,7 @@ All colors MUST be HSL.
     font-family: 'Inter', sans-serif;
   }
 
-  /* Custom gradients */
+  /* Professional gradients */
   .bg-gradient-hero {
     background: var(--gradient-hero);
   }
@@ -143,12 +143,12 @@ All colors MUST be HSL.
     background: var(--gradient-primary);
   }
   
-  .bg-gradient-saffron {
-    background: var(--gradient-saffron);
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
   }
   
-  .bg-gradient-gold {
-    background: var(--gradient-gold);
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
   }
 
   /* Shadows */
@@ -204,5 +204,13 @@ All colors MUST be HSL.
   .hover-lift:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-strong);
+  }
+
+  /* Text utilities */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

@@ -10,7 +10,6 @@ import {
   Phone, 
   Mail, 
   MapPin, 
-  Clock, 
   MessageSquare, 
   Send,
   Building,
@@ -49,8 +48,8 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
     {
       icon: Phone,
       title: 'Phone',
-      primary: '+91 98765 43210',
-      secondary: '+91 87654 32109',
+      primary: '+91 98331 66617',
+      secondary: '+91 98331 66617',
       description: 'Call us for immediate assistance'
     },
     {
@@ -63,16 +62,9 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
     {
       icon: MapPin,
       title: 'Address',
-      primary: '123 Export Plaza, Mumbai',
-      secondary: 'Maharashtra 400001, India',
+      primary: 'Gokul Residency H Building, Kandivali East',
+      secondary: 'Mumbai, Maharashtra 400101, India',
       description: 'Visit our main office'
-    },
-    {
-      icon: Clock,
-      title: 'Business Hours',
-      primary: 'Mon - Fri: 9:00 AM - 6:00 PM',
-      secondary: 'Sat: 9:00 AM - 1:00 PM',
-      description: 'Indian Standard Time (IST)'
     }
   ];
 
@@ -80,22 +72,22 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
     {
       city: 'Mumbai',
       type: 'Head Office',
-      address: '123 Export Plaza, Andheri East, Mumbai - 400001',
-      phone: '+91 98765 43210',
+      address: 'Gokul Residency H Building, Gokul Gagan, Kandivali, Dattani Park, Thakur Village, Kandivali East, Mumbai - 400101',
+      phone: '+91 98331 66617',
       email: 'mumbai@vibhaexim.com'
     },
     {
       city: 'Delhi',
       type: 'Regional Office',
       address: '456 Trade Center, Connaught Place, New Delhi - 110001',
-      phone: '+91 87654 32109',
+      phone: '+91 98331 66617',
       email: 'delhi@vibhaexim.com'
     },
     {
       city: 'Chennai',
       type: 'South Regional Office',
       address: '789 Commerce Hub, T. Nagar, Chennai - 600017',
-      phone: '+91 76543 21098',
+      phone: '+91 98331 66617',
       email: 'chennai@vibhaexim.com'
     }
   ];
@@ -412,20 +404,18 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
             </p>
           </div>
 
-          <Card className="shadow-strong">
-            <CardContent className="p-0">
-              <div className="bg-gradient-primary rounded-lg h-96 flex items-center justify-center text-white">
-                <div className="text-center">
-                  <MapPin className="h-16 w-16 mx-auto mb-4" />
-                  <h3 className="font-heading text-2xl font-bold mb-2">Interactive Map</h3>
-                  <p className="opacity-90">Google Maps integration would be placed here</p>
-                  <Button variant="secondary" className="mt-4 bg-white text-primary hover:bg-gray-100">
-                    Open in Google Maps
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.2!2d72.8667!3d19.076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644ed87%3A0xdecc1499814c163f!2sGokul%20Residency%20H%20Building%2C%20Gokul%20Gagan%2C%20Kandivali%2C%20Dattani%20Park%2C%20Thakur%20Village%2C%20Kandivali%20East%2C%20Mumbai%2C%20Maharashtra%20400101%2C%20India!5e0!3m2!1sen!2sin!4v1703123456789"
+              width="100%"
+              height="450"
+              style={{ border: 0, cursor: 'grab' }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Vibha Exim Office Location - Gokul Residency H Building, Kandivali East, Mumbai"
+            ></iframe>
+          </div>
         </div>
       </section>
 

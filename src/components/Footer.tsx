@@ -1,18 +1,15 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, MapPin, MessageCircle, ArrowUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const quickLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Why Choose Us', href: '#why-choose' },
-    { name: 'Global Presence', href: '#global-presence' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'About Us', to: '/about' },
+    { name: 'Products', to: '/products' },
+    { name: 'Why Choose Us', to: '/why-choose' }, // This may need to be a separate page or removed if not routed
+    { name: 'Global Presence', to: '/global-reach' },
+    { name: 'Contact', to: '/contact' }
   ];
 
   const products = [
@@ -50,7 +47,7 @@ const Footer: React.FC = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4" />
-                  <span className="text-sm">+91 98765 43210</span>
+                  <span className="text-sm">+91 98331 66617</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4" />
@@ -58,7 +55,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-4 w-4" />
-                  <span className="text-sm">Mumbai, Maharashtra, India</span>
+                  <span className="text-sm">Gokul Residency H Building, Gokul Gagan, Kandivali, Dattani Park, Thakur Village, Kandivali East, Mumbai, Maharashtra 400101</span>
                 </div>
               </div>
             </div>
@@ -69,12 +66,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a 
-                      href={link.href} 
+                    <Link 
+                      to={link.to} 
                       className="text-sm opacity-90 hover:opacity-100 hover:text-accent transition-all"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -115,22 +112,22 @@ const Footer: React.FC = () => {
 
         {/* CTA Section */}
         <div className="border-t border-primary-foreground/20 py-8">
-          <div className="bg-accent/10 rounded-xl p-6 md:p-8 text-center">
+          <div className="bg-secondary/20 rounded-xl p-6 md:p-8 text-center">
             <h3 className="font-heading text-2xl font-bold mb-4">Ready to Import Premium Products?</h3>
             <p className="text-sm opacity-90 mb-6 max-w-2xl mx-auto">
               Join our network of satisfied importers worldwide. Get competitive quotes and 
               reliable supply chain solutions for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="#contact"
-                className="inline-flex items-center px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent-hover transition-colors"
+              <Link 
+                to="/contact"
+                className="inline-flex items-center px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent-hover transition-colors shadow-soft"
               >
                 Get Quote Now
-              </a>
+              </Link>
               <a 
-                href="https://wa.me/919876543210"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-lg hover:bg-[#128C7E] transition-colors"
+                href="https://wa.me/919833166617"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-lg hover:bg-[#128C7E] transition-colors shadow-soft"
               >
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp Us
@@ -148,13 +145,15 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-6">
               <span className="text-sm opacity-90">Certified by FSSAI & ISO</span>
               <Button
+                asChild
                 variant="ghost"
                 size="sm"
-                onClick={scrollToTop}
                 className="text-primary-foreground hover:text-accent"
               >
-                <ArrowUp className="h-4 w-4 mr-1" />
-                Back to Top
+                <Link to="/">
+                  <ArrowUp className="h-4 w-4 mr-1" />
+                  Back to Top
+                </Link>
               </Button>
             </div>
           </div>

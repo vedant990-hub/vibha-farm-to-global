@@ -1,29 +1,54 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Send, Leaf, Star } from 'lucide-react';
 import productsImage from '@/assets/products-showcase.jpg';
+import { Link } from 'react-router-dom';
 
 const ProductsSection: React.FC = () => {
-  const productCategories = [
+  const herbalProducts = [
     {
-      name: 'Dal & Pulses',
-      items: ['Toor Dal', 'Moong Dal', 'Chana Dal', 'Urad Dal', 'Masoor Dal', 'Arhar Dal'],
-      description: 'Premium quality lentils and pulses'
+      name: 'Moringa Powder',
+      description: 'A nutrient-rich superfood powder made from dried Moringa leaves, known for its high antioxidant and anti-inflammatory properties.',
+      benefits: ['High in antioxidants', 'Anti-inflammatory', 'Rich in vitamins'],
+      exportQuality: true,
+      enquiryId: 'moringa-powder'
     },
     {
-      name: 'Grains & Cereals',
-      items: ['Basmati Rice', 'Wheat', 'Millet', 'Quinoa', 'Barley', 'Chickpeas'],
-      description: 'High-grade grains and cereals'
+      name: 'Turmeric Powder',
+      description: 'Bright yellow spice with powerful curcumin content, widely used for its anti-inflammatory and immunity-boosting benefits.',
+      benefits: ['High curcumin content', 'Anti-inflammatory', 'Immunity booster'],
+      exportQuality: true,
+      enquiryId: 'turmeric-powder'
     },
     {
-      name: 'Spices',
-      items: ['Turmeric', 'Cumin', 'Coriander', 'Red Chili', 'Black Pepper', 'Cardamom'],
-      description: 'Authentic Indian spices'
+      name: 'Ashwagandha Root',
+      description: 'An adaptogenic herb traditionally used to reduce stress, boost energy, and improve overall well-being.',
+      benefits: ['Adaptogenic', 'Stress reduction', 'Energy booster'],
+      exportQuality: true,
+      enquiryId: 'ashwagandha-root'
     },
     {
-      name: 'Specialty Items',
-      items: ['Cashews', 'Almonds', 'Sesame Seeds', 'Mustard Seeds', 'Fenugreek', 'Fennel'],
-      description: 'Premium nuts and specialty products'
+      name: 'Giloy (Tinospora cordifolia)',
+      description: 'Known for enhancing immunity and detoxifying the body, widely used in Ayurvedic medicine.',
+      benefits: ['Immunity enhancer', 'Detoxifying', 'Ayurvedic'],
+      exportQuality: true,
+      enquiryId: 'giloy'
+    },
+    {
+      name: 'Tulsi (Holy Basil) Leaves',
+      description: 'Sacred herb with antimicrobial and adaptogenic qualities, promoting respiratory and immune health.',
+      benefits: ['Antimicrobial', 'Respiratory health', 'Sacred herb'],
+      exportQuality: true,
+      enquiryId: 'tulsi-leaves'
+    },
+    {
+      name: 'Amla (Indian Gooseberry) Powder',
+      description: 'Rich in Vitamin C, supports digestion, skin health, and strengthens the immune system.',
+      benefits: ['High Vitamin C', 'Digestive health', 'Skin health'],
+      exportQuality: true,
+      enquiryId: 'amla-powder'
     }
   ];
 
@@ -40,16 +65,17 @@ const ProductsSection: React.FC = () => {
     <section id="products" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-4">
-            Our Premium Products
+          <span className="inline-block px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium mb-4">
+            <Leaf className="inline w-4 h-4 mr-2" />
+            Natural & Organic
           </span>
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Finest Quality
-            <span className="text-secondary block">Agricultural Products</span>
+            Premium
+            <span className="text-primary block">Herbal Products</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            From the fertile fields of India to your warehouse, we ensure every product 
-            meets the highest standards of quality and authenticity.
+            Discover the power of nature with our premium herbal and Ayurvedic products, 
+            sourced from the finest farms and processed with traditional wisdom.
           </p>
         </div>
 
@@ -73,57 +99,78 @@ const ProductsSection: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className="bg-accent/10 rounded-lg p-6">
-              <h4 className="font-semibold text-accent-foreground mb-2">Bulk Order Benefits</h4>
+            <div className="bg-secondary rounded-lg p-6 border border-border">
+              <h4 className="font-semibold text-secondary-foreground mb-2">Export Quality Standards</h4>
               <p className="text-sm text-muted-foreground">
-                Special pricing for wholesale quantities, flexible payment terms, 
-                and dedicated account management for regular importers.
+                All products meet international export standards with proper certification, 
+                testing, and packaging for global markets.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productCategories.map((category, index) => (
-            <Card key={index} className="hover-lift border-border shadow-soft">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {herbalProducts.map((product, index) => (
+            <Card key={index} className="hover-lift border-border shadow-soft bg-gradient-to-br from-secondary to-white">
               <CardContent className="p-6">
                 <div className="text-center mb-4">
+                  <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Leaf className="h-6 w-6 text-primary" />
+                  </div>
                   <h3 className="font-heading text-xl font-bold text-foreground mb-2">
-                    {category.name}
+                    {product.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground">{category.description}</p>
+                  {product.exportQuality && (
+                    <Badge variant="secondary" className="bg-secondary text-secondary-foreground border-border mb-3">
+                      <Star className="w-3 h-3 mr-1" />
+                      Export Quality
+                    </Badge>
+                  )}
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {product.description}
+                  </p>
                 </div>
                 
-                <div className="space-y-2">
-                  {category.items.map((item, itemIndex) => (
+                <div className="space-y-2 mb-6">
+                  {product.benefits.map((benefit, benefitIndex) => (
                     <Badge 
-                      key={itemIndex} 
-                      variant="secondary" 
-                      className="mr-2 mb-2"
+                      key={benefitIndex} 
+                      variant="outline" 
+                      className="mr-2 mb-2 border-border text-primary bg-secondary"
                     >
-                      {item}
+                      {benefit}
                     </Badge>
                   ))}
                 </div>
+
+                <Button 
+                  asChild
+                  className="w-full bg-accent hover:bg-accent-hover text-accent-foreground"
+                >
+                  <Link to={`/enquiry/${product.enquiryId}`}>
+                    <Send className="h-4 w-4 mr-2" />
+                    Request Quote
+                  </Link>
+                </Button>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <div className="bg-muted/50 rounded-lg p-8">
+          <div className="bg-secondary rounded-lg p-8 border border-border">
             <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
-              Custom Requirements?
+              Custom Herbal Requirements?
             </h3>
             <p className="text-muted-foreground mb-4">
-              We can source specific varieties and grades based on your market requirements.
+              We can source specific herbal varieties and create custom formulations based on your market requirements.
             </p>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center px-6 py-3 bg-gradient-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent-hover transition-colors"
             >
               Request Custom Quote
-            </a>
+            </Link>
           </div>
         </div>
       </div>

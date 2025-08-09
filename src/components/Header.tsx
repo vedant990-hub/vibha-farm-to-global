@@ -13,77 +13,63 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 shadow-soft backdrop-blur font-body transition-all border-b border-border">
       <div className="container mx-auto px-4">
-        {/* Top bar with contact info */}
-        <div className="hidden md:flex items-center justify-between py-2 text-sm border-b border-border">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Phone className="h-4 w-4" />
-              <span>+91 98765 43210</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Mail className="h-4 w-4" />
-              <span>info@vibhaexim.com</span>
-            </div>
-          </div>
-          <LanguageSwitcher currentLang={currentLang} onLanguageChange={onLanguageChange} />
-        </div>
-
-        {/* Main navigation */}
-        <div className="flex items-center justify-between py-4">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">V</span>
-            </div>
+        <div className="flex items-center justify-between py-4 md:py-3">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group focus:outline-none" aria-label="Go to home page">
+            <img
+              src="/vibha_logo.jpg"
+              className="h-12 w-12 object-contain transition-transform group-hover:scale-105"
+              style={{ minWidth: '3rem' }}
+              alt="Vibha Exim Logo"
+            />
             <div>
-              <h1 className="font-heading font-bold text-xl text-primary">Vibha Exim</h1>
-              <p className="text-xs text-muted-foreground">Global Services</p>
+              <h1 className="font-heading font-bold text-2xl text-primary whitespace-nowrap">Vibha Exim Global Services</h1>
             </div>
-          </div>
+          </Link>
 
+          {/* Main navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             <Link 
               to="/about"
-              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/about' ? 'text-primary font-medium' : ''}`}
+              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/about' ? 'border-primary text-primary' : ''}`}
             >
               About Us
             </Link>
             <Link 
               to="/products"
-              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/products' ? 'text-primary font-medium' : ''}`}
+              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/products' ? 'border-primary text-primary' : ''}`}
             >
               Products
             </Link>
             <Link 
               to="/global-reach"
-              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/global-reach' ? 'text-primary font-medium' : ''}`}
+              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/global-reach' ? 'border-primary text-primary' : ''}`}
             >
               Global Reach
             </Link>
             <Link 
               to="/testimonials"
-              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/testimonials' ? 'text-primary font-medium' : ''}`}
+              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/testimonials' ? 'border-primary text-primary' : ''}`}
             >
               Testimonials
             </Link>
             <Link 
               to="/contact"
-              className={`text-foreground hover:text-primary transition-colors ${location.pathname === '/contact' ? 'text-primary font-medium' : ''}`}
+              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/contact' ? 'border-primary text-primary' : ''}`}
             >
               Contact
             </Link>
           </nav>
 
-          <div className="flex items-center gap-4">
-            <div className="md:hidden">
-              <LanguageSwitcher currentLang={currentLang} onLanguageChange={onLanguageChange} />
-            </div>
+          {/* Actions */}
+          <div className="flex items-center gap-3">
             <Button 
-              onClick={() => scrollToSection('contact')}
-              className="bg-gradient-saffron hover:bg-secondary-hover"
+              asChild
+              className="bg-accent text-accent-foreground rounded-md px-5 py-2 text-sm font-semibold shadow-soft hover:bg-accent-hover transition-all focus:ring-2 focus:ring-accent/40"
             >
-              Get Quote
+              <Link to="/contact">Get Quote</Link>
             </Button>
             <Button variant="outline" size="icon" className="lg:hidden">
               <Menu className="h-5 w-5" />

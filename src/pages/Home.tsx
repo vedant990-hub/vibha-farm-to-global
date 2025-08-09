@@ -14,15 +14,18 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          style={{ 
+            backgroundImage: `url(${heroImage})`,
+            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
+          }}
         ></div>
         
         <div className="relative container mx-auto px-4 z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 animate-float">
+            <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6">
               From Indian Farms to Global Markets
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90">
@@ -30,13 +33,13 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/products">
-                <Button size="lg" variant="secondary" className="bg-gradient-saffron hover:bg-secondary-hover">
+                <Button size="lg" variant="secondary" className="bg-gradient-accent hover:bg-accent-hover text-accent-foreground">
                   Explore Products
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="outline" className="bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold">
                   Get Quote
                 </Button>
               </Link>
@@ -45,12 +48,6 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
         </div>
 
         {/* Floating elements */}
-        <div className="absolute top-20 right-10 animate-float opacity-30">
-          <Globe className="h-20 w-20 text-white animate-pulse-slow" />
-        </div>
-        <div className="absolute bottom-20 left-10 animate-float opacity-30" style={{ animationDelay: '2s' }}>
-          <Truck className="h-16 w-16 text-white" />
-        </div>
       </section>
 
       {/* Quick Overview */}
@@ -78,8 +75,8 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
 
             <Card className="hover-lift">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-saffron rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-gradient-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Globe className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-2">Global Reach</h3>
                 <p className="text-muted-foreground">Exporting to 15+ countries across Middle East and Asia</p>
@@ -88,8 +85,8 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
 
             <Card className="hover-lift">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Truck className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Truck className="h-8 w-8 text-accent-foreground" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-2">Reliable Logistics</h3>
                 <p className="text-muted-foreground">Timely delivery with advanced supply chain management</p>

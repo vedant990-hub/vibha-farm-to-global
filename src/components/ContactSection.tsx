@@ -46,8 +46,8 @@ const ContactSection: React.FC = () => {
     {
       icon: Phone,
       title: 'Phone',
-      content: '+91 98765 43210',
-      link: 'tel:+919876543210'
+      content: '+91 98331 66617',
+      link: 'tel:+919833166617'
     },
     {
       icon: Mail,
@@ -58,13 +58,13 @@ const ContactSection: React.FC = () => {
     {
       icon: MessageCircle,
       title: 'WhatsApp',
-      content: '+91 98765 43210',
-      link: 'https://wa.me/919876543210'
+      content: '+91 98331 66617',
+      link: 'https://wa.me/919833166617'
     },
     {
       icon: MapPin,
       title: 'Address',
-      content: 'Mumbai, Maharashtra, India',
+      content: 'Gokul Residency H Building, Gokul Gagan, Kandivali, Dattani Park, Thakur Village, Kandivali East, Mumbai, Maharashtra 400101',
       link: null
     }
   ];
@@ -259,7 +259,7 @@ const ContactSection: React.FC = () => {
                   Call us directly for immediate assistance
                 </p>
                 <a 
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/919833166617"
                   className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-lg hover:bg-[#128C7E] transition-colors"
                 >
                   <MessageCircle className="h-4 w-4" />
@@ -268,6 +268,31 @@ const ContactSection: React.FC = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+        {/* Google Map Section */}
+        <div className="mt-12 rounded-xl overflow-hidden shadow-soft bg-white p-6">
+          <h3 className="font-heading text-2xl font-bold mb-2 text-primary">Find Us on Map</h3>
+          <p className="text-muted-foreground mb-4">Located in the heart of Mumbai's business district</p>
+          <div className="font-semibold mb-2 text-accent-foreground">Interactive Map</div>
+          <iframe
+            title="Vibha Exim Global Services Office Map"
+            src="https://www.google.com/maps?q=Gokul+Residency+H+Building,+Gokul+Gagan,+Kandivali,+Dattani+Park,+Thakur+Village,+Kandivali+East,+Mumbai,+Maharashtra+400101&output=embed"
+            width="100%"
+            height="350"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-lg mb-4"
+          ></iframe>
+          <a
+            href="https://www.google.com/maps/place/Gokul+Residency+H+Building,+Gokul+Gagan,+Kandivali,+Dattani+Park,+Thakur+Village,+Kandivali+East,+Mumbai,+Maharashtra+400101"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-2 px-6 py-2 bg-accent text-accent-foreground rounded-md font-semibold shadow hover:bg-accent-hover transition-colors"
+          >
+            Open in Google Maps
+          </a>
         </div>
       </div>
     </section>
