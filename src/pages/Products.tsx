@@ -8,9 +8,15 @@ import { Link } from 'react-router-dom';
 import productsImage from '@/assets/products-showcase.jpg';
 import moringaImage from '@/assets/moringa_powder.jpg';
 import toorDalImage from '@/assets/toor_dal.jpg';
-import moongDalImage from '@/assets/Moong_dal.webp';
+import moongDalImage from '@/assets/Moong-Dal-Chilka.jpg';
 import chanaDalImage from '@/assets/Chana_Dal.webp';
 import masoorDalImage from '@/assets/masoor_dal.jpg';
+import basmatiRiceImage from '@/assets/basmati_rice.jpg';
+import nonBasmatiRiceImage from '@/assets/non_basmati_rice.jpg';
+import milletsImage from '@/assets/millets_image.jpg';
+
+// Wheat image from Unsplash for professional appearance
+const wheatImage = 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=400&fit=crop';
 
 interface ProductsProps {
   currentLang: string;
@@ -280,130 +286,153 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
 
                                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                    {category.products.map((product, index) => (
-                     <Card key={index} className="hover-lift flex flex-col justify-between p-4 rounded-xl shadow-soft min-h-[420px]">
+                     <Card key={index} className="hover-lift flex flex-col justify-between rounded-xl shadow-soft overflow-hidden min-h-[500px]">
                        <CardContent className="p-0 flex flex-col h-full">
-                                                   {/* Product Image Section */}
-                          <div className="product-image mb-3">
-                            {product.name === 'Moringa Powder' ? (
-                              <img 
-                                src={moringaImage} 
-                                alt="Moringa Powder – Herbal Product for Export" 
-                                className="w-full h-[180px] object-cover rounded-lg"
-                                loading="lazy"
-                              />
-                            ) : product.name === 'Toor Dal (Pigeon Peas)' ? (
-                              <img 
-                                src={toorDalImage} 
-                                alt="Toor Dal (Pigeon Peas) – Premium Export Product" 
-                                className="w-full h-[180px] object-cover rounded-lg"
-                                loading="lazy"
-                              />
-                            ) : product.name === 'Moong Dal (Green Gram)' ? (
-                              <img 
-                                src={moongDalImage} 
-                                alt="Moong Dal (Green Gram) – Premium Export Product" 
-                                className="w-full h-[180px] object-cover rounded-lg"
-                                loading="lazy"
-                              />
-                            ) : product.name === 'Chana Dal (Bengal Gram)' ? (
-                              <img 
-                                src={chanaDalImage} 
-                                alt="Chana Dal (Bengal Gram) – Premium Export Product" 
-                                className="w-full h-[180px] object-cover rounded-lg"
-                                loading="lazy"
-                              />
-                            ) : product.name === 'Masoor Dal (Red Lentils)' ? (
-                              <img 
-                                src={masoorDalImage} 
-                                alt="Masoor Dal (Red Lentils) – Premium Export Product" 
-                                className="w-full h-[180px] object-cover rounded-lg"
-                                loading="lazy"
-                              />
-                            ) : (
-                              <div className="product-placeholder w-full h-[180px] bg-gray-100 flex items-center justify-center rounded-lg">
-                                <Package className="h-12 w-12 text-gray-400" />
-                              </div>
-                            )}
-                          </div>
+                         {/* Product Image Section - 60% of card height */}
+                         <div className="product-image h-[60%] min-h-[300px] relative">
+                           {product.name === 'Moringa Powder' ? (
+                             <img 
+                               src={moringaImage} 
+                               alt="Moringa Powder – Herbal Product for Export" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Toor Dal (Pigeon Peas)' ? (
+                             <img 
+                               src={toorDalImage} 
+                               alt="Toor Dal (Pigeon Peas) – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Moong Dal (Green Gram)' ? (
+                             <img 
+                               src={moongDalImage} 
+                               alt="Moong Dal (Green Gram) – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Chana Dal (Bengal Gram)' ? (
+                             <img 
+                               src={chanaDalImage} 
+                               alt="Chana Dal (Bengal Gram) – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Masoor Dal (Red Lentils)' ? (
+                             <img 
+                               src={masoorDalImage} 
+                               alt="Masoor Dal (Red Lentils) – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Basmati Rice' ? (
+                             <img 
+                               src={basmatiRiceImage} 
+                               alt="Basmati Rice – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Non-Basmati Rice' ? (
+                             <img 
+                               src={nonBasmatiRiceImage} 
+                               alt="Non-Basmati Rice – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Wheat' ? (
+                             <img 
+                               src={wheatImage} 
+                               alt="Wheat – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Millets' ? (
+                             <img 
+                               src={milletsImage} 
+                               alt="Millets – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : (
+                             <div className="product-placeholder w-full h-full bg-gray-100 flex items-center justify-center rounded-t-xl">
+                               <Package className="h-12 w-12 text-gray-400" />
+                             </div>
+                           )}
+                         </div>
 
-                         {/* Product Details */}
-                         <div className="product-info flex flex-col gap-4 flex-grow">
+                         {/* Product Details - 40% of card height */}
+                         <div className="product-info flex flex-col gap-3 flex-grow p-4">
                            {/* Product Header */}
                            <div>
                              <h4 className="font-heading text-xl md:text-2xl font-bold text-primary mb-2">
                                {product.name}
                              </h4>
-                             {product.description && (
-                               <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                                 {product.description}
-                               </p>
-                             )}
                            </div>
 
                            {/* Product Tags */}
-                           <div className="flex flex-wrap gap-2">
+                           <div className="flex flex-wrap gap-2 mb-3">
                              {product.varieties.slice(0, 3).map((variety, i) => (
-                               <Badge key={i} variant="outline" className="text-xs border-border">
+                               <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground border-border">
                                  {variety}
                                </Badge>
                              ))}
                              {product.certifications.slice(0, 2).map((cert, i) => (
-                               <Badge key={i} variant="secondary" className="text-xs">
+                               <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground">
                                  <Award className="h-3 w-3 mr-1" />
                                  {cert}
                                </Badge>
                              ))}
                            </div>
 
-                           {/* Product Specifications */}
-                           <div className="grid grid-cols-1 gap-3 text-sm">
+                           {/* Product Specifications Grid */}
+                           <div className="grid grid-cols-1 gap-2 text-sm flex-grow">
                              <div className="flex items-center gap-2">
-                               <span className="text-muted-foreground">Origin:</span>
+                               <span className="text-muted-foreground font-medium">Origin:</span>
                                <span className="font-medium">{product.origin}</span>
                              </div>
                              <div className="flex items-center gap-2">
-                               <span className="text-muted-foreground">Packaging:</span>
+                               <span className="text-muted-foreground font-medium">Packaging:</span>
                                <span className="font-medium">{product.packaging}</span>
                              </div>
                              {product.protein && (
                                <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground">Protein:</span>
+                                 <span className="text-muted-foreground font-medium">Protein:</span>
                                  <span className="font-medium">{product.protein}</span>
                                </div>
                              )}
                              {product.grainLength && (
                                <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground">Grain Length:</span>
+                                 <span className="text-muted-foreground font-medium">Grain Length:</span>
                                  <span className="font-medium">{product.grainLength}</span>
                                </div>
                              )}
                              {product.curcumin && (
                                <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground">Curcumin:</span>
+                                 <span className="text-muted-foreground font-medium">Curcumin:</span>
                                  <span className="font-medium">{product.curcumin}</span>
                                </div>
                              )}
                              {product.oilContent && (
                                <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground">Oil Content:</span>
+                                 <span className="text-muted-foreground font-medium">Oil Content:</span>
                                  <span className="font-medium">{product.oilContent}</span>
                                </div>
                              )}
                              {product.benefits && (
                                <div className="flex items-start gap-2">
-                                 <span className="text-muted-foreground">Benefits:</span>
+                                 <span className="text-muted-foreground font-medium">Benefits:</span>
                                  <span className="font-medium text-green-600">{product.benefits}</span>
                                </div>
                              )}
                            </div>
                          </div>
 
-                         {/* Action Button */}
-                         <div className="mt-auto pt-4">
+                         {/* Action Button - Full width with larger padding */}
+                         <div className="p-4 pt-0">
                            <Button 
                              asChild
                              size="lg" 
-                             className="w-full bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft hover:shadow-medium transition-all duration-200 hover:scale-105"
+                             className="w-full bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft hover:shadow-medium transition-all duration-200 hover:scale-105 py-3 px-6"
                            >
                              <Link to={`/enquiry/${product.enquiryId}`}>
                                <Send className="h-4 w-4 mr-2" />

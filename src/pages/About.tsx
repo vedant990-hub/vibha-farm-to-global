@@ -158,8 +158,21 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
       </section>
 
       {/* Certifications */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-muted overflow-hidden">
+        {/* Background Logo Watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <img 
+            src="/src/assets/vibha_logo.jpg" 
+            alt="Vibha Global Exim Services" 
+            className="w-full max-w-6xl h-auto opacity-5 blur-sm transition-all duration-1000 ease-out transform hover:scale-105"
+            style={{
+              filter: 'grayscale(100%) brightness(1.2)',
+            }}
+          />
+        </div>
+        
+        {/* Content Layer */}
+        <div className="relative container mx-auto px-4 z-10">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl font-bold text-primary mb-4">
               Certifications & Standards
@@ -169,47 +182,128 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card className="hover-lift">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="font-heading text-xl font-semibold mb-2">FSSAI Certified</h3>
-                <p className="text-muted-foreground">
-                  Food Safety and Standards Authority of India certification ensuring highest food safety standards for all our exports.
-                </p>
-                <Badge variant="secondary" className="mt-4">IEC Code: AMNPP7565N</Badge>
-              </CardContent>
-            </Card>
+          {/* High-resolution certification badges */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-16 mb-16">
+            <div className="inline-flex flex-col items-center gap-4">
+              {/* FSSAI Badge */}
+              <div className="relative">
+                <div
+                  className="relative"
+                  style={{
+                    width: 200,
+                    height: 200,
+                    filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.12))',
+                  }}
+                  aria-hidden
+                >
+                  {/* Outer ring */}
+                  <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="ring-fssai" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#2563EB" />
+                        <stop offset="1" stopColor="#10B981" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="98" stroke="url(#ring-fssai)" strokeWidth="4" />
+                  </svg>
 
-            <Card className="hover-lift">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-gradient-saffron rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="font-heading text-xl font-semibold mb-2">ISO 22000:2018</h3>
-                <p className="text-muted-foreground">
-                  International standard for food safety management systems ensuring global quality compliance
-                </p>
-                <Badge variant="secondary" className="mt-4">Certified Since 2018</Badge>
-              </CardContent>
-            </Card>
+                  {/* Inner circle (white) */}
+                  <div className="absolute inset-2 rounded-full bg-white border border-gray-200" />
 
-            <Card className="hover-lift">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Truck className="h-10 w-10 text-white" />
+                  {/* Centered FSSAI logo */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src="/src/assets/fssai_logo.png"
+                      alt="FSSAI"
+                      className="object-contain"
+                      style={{ width: 130, height: 130 }}
+                    />
+                  </div>
                 </div>
-                <h3 className="font-heading text-xl font-semibold mb-2">HACCP Compliant</h3>
-                <p className="text-muted-foreground">
-                  Hazard Analysis Critical Control Points system for comprehensive food safety management
-                </p>
-                <Badge variant="secondary" className="mt-4">Verified 2024</Badge>
-              </CardContent>
-            </Card>
+
+                {/* Title */}
+                <div className="text-center mt-6">
+                  <div className="font-heading font-bold text-2xl text-primary leading-tight">
+                    FSSAI Certified
+                  </div>
+                </div>
+
+                {/* Tag */}
+                <div className="px-4 py-2 rounded-full text-white text-sm font-medium mt-4 mx-auto w-fit" style={{ backgroundColor: '#16A34A' }}>
+                  IEC Code: AMNPP7565N
+                </div>
+              </div>
+            </div>
+
+            <div className="inline-flex flex-col items-center gap-4">
+              {/* APEDA Badge */}
+              <div className="relative">
+                <div
+                  className="relative"
+                  style={{
+                    width: 200,
+                    height: 200,
+                    filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.12))',
+                  }}
+                  aria-hidden
+                >
+                  {/* Outer ring */}
+                  <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="ring-apeda" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#2563EB" />
+                        <stop offset="1" stopColor="#10B981" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="98" stroke="url(#ring-apeda)" strokeWidth="4" />
+                  </svg>
+
+                  {/* Inner circle (white) */}
+                  <div className="absolute inset-2 rounded-full bg-white border border-gray-200" />
+
+                  {/* Centered APEDA logo */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src="/src/assets/apeda_new_logo.jpg"
+                      alt="APEDA"
+                      className="object-contain"
+                      style={{ width: 130, height: 130 }}
+                    />
+                  </div>
+                </div>
+
+                {/* Title */}
+                <div className="text-center mt-6">
+                  <div className="font-heading font-bold text-2xl text-primary leading-tight">
+                    APEDA Certified
+                  </div>
+                </div>
+
+                {/* Tag */}
+                <div className="px-4 py-2 rounded-full text-white text-sm font-medium mt-4 mx-auto w-fit" style={{ backgroundColor: '#16A34A' }}>
+                  APEDA Registered
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        
+        {/* Custom CSS for responsive background logo */}
+        <style jsx>{`
+          @media (max-width: 768px) {
+            .absolute img {
+              max-width: 90vw;
+              height: auto;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .absolute img {
+              max-width: 85vw;
+              height: auto;
+            }
+          }
+        `}</style>
       </section>
 
       {/* Vedanta Healthcare Strategic Venture Section */}

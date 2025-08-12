@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-primary-foreground/20 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm opacity-90">
-              © 2024 Vibha Exim Global Services. All rights reserved.
+              © 2025 Vibha Exim Global Services. All rights reserved.
             </div>
             <div className="flex items-center gap-6">
               <span className="text-sm opacity-90">Certified by FSSAI & ISO</span>

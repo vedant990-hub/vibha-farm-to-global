@@ -75,20 +75,6 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       address: 'Gokul Residency H Building, Gokul Gagan, Kandivali, Dattani Park, Thakur Village, Kandivali East, Mumbai - 400101',
       phone: '+91 98331 66617',
       email: 'mumbai@vibhaexim.com'
-    },
-    {
-      city: 'Delhi',
-      type: 'Regional Office',
-      address: '456 Trade Center, Connaught Place, New Delhi - 110001',
-      phone: '+91 98331 66617',
-      email: 'delhi@vibhaexim.com'
-    },
-    {
-      city: 'Chennai',
-      type: 'South Regional Office',
-      address: '789 Commerce Hub, T. Nagar, Chennai - 600017',
-      phone: '+91 98331 66617',
-      email: 'chennai@vibhaexim.com'
     }
   ];
 
@@ -357,9 +343,9 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex justify-center">
             {officeLocations.map((office, index) => (
-              <Card key={index} className="hover-lift">
+              <Card key={index} className="hover-lift max-w-md">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 bg-gradient-saffron rounded-full flex items-center justify-center">
