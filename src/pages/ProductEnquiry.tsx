@@ -421,7 +421,7 @@ const ProductEnquiry: React.FC<ProductEnquiryProps> = ({ currentLang }) => {
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5" />
-                    <span className="text-sm">info@vibhaeximglobal.com</span>
+                    <a href="mailto:info@vibhaglobaleximservices.com" className="text-sm hover:opacity-80 transition-opacity">info@vibhaglobaleximservices.com</a>
                   </div>
                 </div>
                 <p className="text-sm mt-4 opacity-90">

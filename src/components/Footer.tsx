@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4" />
-                  <span className="text-sm">info@vibhaexim.com</span>
+                  <a href="mailto:info@vibhaglobaleximservices.com" className="text-sm hover:text-accent transition-colors">info@vibhaglobaleximservices.com</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-4 w-4" />

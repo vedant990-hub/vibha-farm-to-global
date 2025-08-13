@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Badge } from '@/components/ui/badge';
+import { EMAILJS_CONFIG } from '@/config/emailjs';
 import { 
   Phone, 
   Mail, 
@@ -15,7 +18,9 @@ import {
   Building,
   Globe,
   FileText,
-  Users
+  Users,
+  ChevronsUpDown,
+  Check
 } from 'lucide-react';
 
 interface ContactProps {
@@ -23,16 +28,69 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ currentLang }) => {
+  // EmailJS configuration from centralized config
+  const { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY } = EMAILJS_CONFIG;
+
+  const countryOptions = [
+    { value: 'afghanistan', label: 'Afghanistan' },
+    { value: 'argentina', label: 'Argentina' },
+    { value: 'australia', label: 'Australia' },
+    { value: 'bahrain', label: 'Bahrain' },
+    { value: 'bangladesh', label: 'Bangladesh' },
+    { value: 'brazil', label: 'Brazil' },
+    { value: 'canada', label: 'Canada' },
+    { value: 'chile', label: 'Chile' },
+    { value: 'china', label: 'China' },
+    { value: 'egypt', label: 'Egypt' },
+    { value: 'ethiopia', label: 'Ethiopia' },
+    { value: 'france', label: 'France' },
+    { value: 'germany', label: 'Germany' },
+    { value: 'ghana', label: 'Ghana' },
+    { value: 'india', label: 'India' },
+    { value: 'indonesia', label: 'Indonesia' },
+    { value: 'italy', label: 'Italy' },
+    { value: 'japan', label: 'Japan' },
+    { value: 'kenya', label: 'Kenya' },
+    { value: 'kuwait', label: 'Kuwait' },
+    { value: 'malaysia', label: 'Malaysia' },
+    { value: 'maldives', label: 'Maldives' },
+    { value: 'mexico', label: 'Mexico' },
+    { value: 'morocco', label: 'Morocco' },
+    { value: 'nepal', label: 'Nepal' },
+    { value: 'new-zealand', label: 'New Zealand' },
+    { value: 'nigeria', label: 'Nigeria' },
+    { value: 'oman', label: 'Oman' },
+    { value: 'pakistan', label: 'Pakistan' },
+    { value: 'philippines', label: 'Philippines' },
+    { value: 'poland', label: 'Poland' },
+    { value: 'qatar', label: 'Qatar' },
+    { value: 'russia', label: 'Russia' },
+    { value: 'saudi-arabia', label: 'Saudi Arabia' },
+    { value: 'singapore', label: 'Singapore' },
+    { value: 'south-africa', label: 'South Africa' },
+    { value: 'south-korea', label: 'South Korea' },
+    { value: 'spain', label: 'Spain' },
+    { value: 'sri-lanka', label: 'Sri Lanka' },
+    { value: 'thailand', label: 'Thailand' },
+    { value: 'turkey', label: 'Turkey' },
+    { value: 'uae', label: 'United Arab Emirates' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'usa', label: 'United States' },
+    { value: 'vietnam', label: 'Vietnam' },
+    { value: 'other', label: 'Other' },
+  ].sort((a, b) => a.label.localeCompare(b.label));
+
+  const [countryOpen, setCountryOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     country: '',
     phone: '',
-    productInterest: '',
-    quantity: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -40,8 +98,42 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    // Prepare template parameters for EmailJS
+    const templateParams = {
+      full_name: formData.name,
+      email: formData.email,
+      company_name: formData.company,
+      country: countryOptions.find(c => c.value === formData.country)?.label || formData.country,
+      phone: formData.phone,
+      message: formData.message,
+      time: new Date().toLocaleString(), // optional, matches {{time}}
+    };
+    
+
+    // Send email using EmailJS
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then((response) => {
+        console.log('Email sent successfully:', response);
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          country: '',
+          phone: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.error('Email sending failed:', error);
+        setSubmitStatus('error');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const contactInfo = [
@@ -55,8 +147,8 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
     {
       icon: Mail,
       title: 'Email',
-      primary: 'info@vibhaexim.com',
-      secondary: 'sales@vibhaexim.com',
+      primary: 'info@vibhaglobaleximservices.com',
+      secondary: 'info@vibhaglobaleximservices.com',
       description: 'Send us your inquiries anytime'
     },
     {
@@ -74,7 +166,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       type: 'Head Office',
       address: 'Gokul Residency H Building, Gokul Gagan, Kandivali, Dattani Park, Thakur Village, Kandivali East, Mumbai - 400101',
       phone: '+91 98331 66617',
-      email: 'mumbai@vibhaexim.com'
+      email: 'info@vibhaglobaleximservices.com'
     }
   ];
 
@@ -190,28 +282,52 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="country">Country *</Label>
-                        <Select onValueChange={(value) => handleInputChange('country', value)}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select your country" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="uae">United Arab Emirates</SelectItem>
-                            <SelectItem value="ksa">Saudi Arabia</SelectItem>
-                            <SelectItem value="qatar">Qatar</SelectItem>
-                            <SelectItem value="kuwait">Kuwait</SelectItem>
-                            <SelectItem value="oman">Oman</SelectItem>
-                            <SelectItem value="bahrain">Bahrain</SelectItem>
-                            <SelectItem value="bangladesh">Bangladesh</SelectItem>
-                            <SelectItem value="sri-lanka">Sri Lanka</SelectItem>
-                            <SelectItem value="malaysia">Malaysia</SelectItem>
-                            <SelectItem value="singapore">Singapore</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Popover open={countryOpen} onOpenChange={setCountryOpen}>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              aria-expanded={countryOpen}
+                              className="w-full justify-between"
+                            >
+                              {formData.country
+                                ? countryOptions.find((c) => c.value === formData.country)?.label
+                                : 'Select your country'}
+                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                            <Command>
+                              <CommandInput placeholder="Search country..." />
+                              <CommandEmpty>No country found.</CommandEmpty>
+                              <CommandList>
+                                <CommandGroup>
+                                  {countryOptions.map((country) => (
+                                    <CommandItem
+                                      key={country.value}
+                                      value={country.label}
+                                      onSelect={() => {
+                                        handleInputChange('country', country.value);
+                                        setCountryOpen(false);
+                                      }}
+                                    >
+                                      <Check
+                                        className={`mr-2 h-4 w-4 ${
+                                          formData.country === country.value ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                      />
+                                      {country.label}
+                                    </CommandItem>
+                                  ))}
+                                </CommandGroup>
+                              </CommandList>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-1 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="phone">Phone Number</Label>
                         <Input
@@ -221,39 +337,9 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                           placeholder="+971 xxx xxx xxx"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="product">Product Interest *</Label>
-                        <Select onValueChange={(value) => handleInputChange('productInterest', value)}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select product category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="pulses">Pulses & Lentils</SelectItem>
-                            <SelectItem value="grains">Grains & Cereals</SelectItem>
-                            <SelectItem value="spices">Spices & Seasonings</SelectItem>
-                            <SelectItem value="oilseeds">Oil Seeds</SelectItem>
-                            <SelectItem value="multiple">Multiple Categories</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="quantity">Quantity Required (MT/Month)</Label>
-                      <Select onValueChange={(value) => handleInputChange('quantity', value)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select quantity range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="0-50">0 - 50 MT</SelectItem>
-                          <SelectItem value="50-100">50 - 100 MT</SelectItem>
-                          <SelectItem value="100-500">100 - 500 MT</SelectItem>
-                          <SelectItem value="500-1000">500 - 1000 MT</SelectItem>
-                          <SelectItem value="1000+">1000+ MT</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Message *</Label>
@@ -269,8 +355,30 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
 
                     <Button type="submit" size="lg" className="w-full bg-gradient-saffron hover:bg-secondary-hover">
                       <Send className="mr-2 h-5 w-5" />
-                      Send Quote Request
+                      {isSubmitting ? 'Sending...' : 'Send Quote Request'}
                     </Button>
+                    {submitStatus === 'success' && (
+                      <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <p className="text-green-800 text-center">
+                          Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.
+                        </p>
+                      </div>
+                    )}
+                    {submitStatus === 'error' && (
+                      <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <p className="text-red-800 text-center">
+                          Sorry, there was an error sending your message. Please try again or contact us directly.
+                        </p>
+                        <div className="mt-2 text-center">
+                          <a 
+                            href="tel:+919833166617" 
+                            className="text-red-600 hover:text-red-800 underline"
+                          >
+                            Call us: +91 98331 66617
+                          </a>
+                        </div>
+                      </div>
+                    )}
                   </form>
                 </CardContent>
               </Card>
@@ -368,7 +476,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                     </div>
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-muted-foreground" />
-                      <p className="text-sm font-medium">{office.email}</p>
+                      <a href="mailto:{office.email}" className="text-sm font-medium hover:text-primary transition-colors">{office.email}</a>
                     </div>
                   </div>
                 </CardContent>

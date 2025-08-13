@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MapPin, MessageCircle, Send, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { EMAILJS_CONFIG } from '@/config/emailjs';
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
+  
+  // EmailJS configuration from centralized config
+  const { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY } = EMAILJS_CONFIG;
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,22 +23,53 @@ const ContactSection: React.FC = () => {
     productInterest: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Quote Request Sent!",
-      description: "We'll get back to you within 24 hours with a detailed quote.",
-    });
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      country: '',
-      phone: '',
-      productInterest: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+
+    // Prepare template parameters for EmailJS
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      company_name: formData.company,
+      country: formData.country,
+      phone_number: formData.phone,
+      product_interest: formData.productInterest,
+      message: formData.message,
+      to_name: 'Vibha Exim Team'
+    };
+
+    // Send email using EmailJS
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then((response) => {
+        console.log('Email sent successfully:', response);
+        toast({
+          title: "Quote Request Sent!",
+          description: "We'll get back to you within 24 hours with a detailed quote.",
+        });
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          country: '',
+          phone: '',
+          productInterest: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.error('Email sending failed:', error);
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again or contact us directly.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -52,8 +89,8 @@ const ContactSection: React.FC = () => {
     {
       icon: Mail,
       title: 'Email',
-      content: 'info@vibhaexim.com',
-      link: 'mailto:info@vibhaexim.com'
+      content: 'info@vibhaglobaleximservices.com',
+      link: 'mailto:info@vibhaglobaleximservices.com'
     },
     {
       icon: MessageCircle,
@@ -194,8 +231,9 @@ const ContactSection: React.FC = () => {
                     type="submit" 
                     size="lg" 
                     className="w-full bg-gradient-saffron hover:bg-secondary-hover"
+                    disabled={isSubmitting}
                   >
-                    Send Quote Request
+                    {isSubmitting ? 'Sending...' : 'Send Quote Request'}
                   </Button>
                 </form>
               </CardContent>
