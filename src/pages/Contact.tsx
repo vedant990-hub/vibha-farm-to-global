@@ -353,7 +353,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-gradient-saffron hover:bg-secondary-hover">
+                    <Button type="submit" size="lg" className="w-full bg-gradient-primary hover:bg-primary-hover text-white">
                       <Send className="mr-2 h-5 w-5" />
                       {isSubmitting ? 'Sending...' : 'Send Quote Request'}
                     </Button>
