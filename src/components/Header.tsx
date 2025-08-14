@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 shadow-soft backdrop-blur font-body transition-all border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 font-body transition-all">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 md:py-3">
           {/* Logo */}
