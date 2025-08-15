@@ -223,12 +223,10 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
-        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url(${productsImage})`,
-            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
+            backgroundImage: `url(${productsImage})`
           }}
         ></div>
         
@@ -358,6 +356,62 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
                                className="w-full h-full object-cover rounded-t-xl"
                                loading="lazy"
                              />
+                           ) : product.name === 'Turmeric Powder' ? (
+                             <img 
+                               src="/Turmeric Powder.jpg" 
+                               alt="Turmeric Powder – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Red Chili Powder' ? (
+                             <img 
+                               src="/Red Chili Powder.jpg" 
+                               alt="Red Chili Powder – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Cumin Seeds' ? (
+                             <img 
+                               src="/Cumin Seeds.jpg" 
+                               alt="Cumin Seeds – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Coriander Seeds' ? (
+                             <img 
+                               src="/Coriander Seeds.jpg" 
+                               alt="Coriander Seeds – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Ashwagandha Root' ? (
+                             <img 
+                               src="/Ashwagandha Root.jpg" 
+                               alt="Ashwagandha Root – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Giloy (Tinospora cordifolia)' ? (
+                             <img 
+                               src="/Giloy (Tinospora cordifolia).jpg" 
+                               alt="Giloy (Tinospora cordifolia) – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Tulsi (Holy Basil) Leaves' ? (
+                             <img 
+                               src="/Tulsi (Holy Basil) Leaves.jpg" 
+                               alt="Tulsi (Holy Basil) Leaves – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
+                           ) : product.name === 'Amla (Indian Gooseberry) Powder' ? (
+                             <img 
+                               src="/Amla (Indian Gooseberry) Powder.jpg" 
+                               alt="Amla (Indian Gooseberry) Powder – Premium Export Product" 
+                               className="w-full h-full object-cover rounded-t-xl"
+                               loading="lazy"
+                             />
                            ) : (
                              <div className="product-placeholder w-full h-full bg-gray-100 flex items-center justify-center rounded-t-xl">
                                <Package className="h-12 w-12 text-gray-400" />
@@ -482,7 +536,7 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
 
             <Card className="hover-lift">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-3">Laboratory Testing</h3>
@@ -494,7 +548,7 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
 
             <Card className="hover-lift">
               <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Truck className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-3">Safe Packaging</h3>
@@ -520,7 +574,7 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
             <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent-hover shadow-soft hover:scale-105 transition-all duration-200">
               Request Product Catalog
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all duration-200">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-black hover:bg-white hover:text-primary hover:scale-105 transition-all duration-200">
               Get Custom Quote
             </Button>
           </div>

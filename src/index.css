@@ -49,7 +49,7 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(120 40% 15%), hsl(120 45% 20%));
     --gradient-secondary: linear-gradient(135deg, hsl(120 60% 90%), hsl(120 55% 85%));
     --gradient-accent: linear-gradient(135deg, hsl(45 100% 51%), hsl(45 95% 46%));
-    --gradient-hero: linear-gradient(135deg, hsl(120 40% 15%) 0%, hsl(120 45% 25%) 50%, hsl(45 100% 51%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(120 40% 15%) 0%, hsl(120 45% 25%) 50%, hsl(109, 46%, 12%) 100%);
 
     /* Professional Shadows */
     --shadow-soft: 0 2px 8px hsl(120 40% 15% / 0.08);

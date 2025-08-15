@@ -14,21 +14,30 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
-        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
-          style={{ 
-            backgroundImage: `url(${heroImage})`,
-            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
-          }}
-        ></div>
+        {/* Video Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-90"
+          >
+            <source src="/output.mp4" type="video/mp4" />
+            {/* Fallback to image if video fails to load */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${heroImage})` }}
+            ></div>
+          </video>
+        </div>
         
         <div className="relative container mx-auto px-4 z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight">
               From Indian Farms to Global Markets
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 opacity-90 px-4 sm:px-0">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 opacity-90 px-4 sm:px-0 leading-relaxed">
               Premium quality pulses, grains, and spices exported worldwide with trust and excellence
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
@@ -122,7 +131,7 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-black hover:bg-white hover:text-primary">
                 Contact Us Today
               </Button>
             </Link>

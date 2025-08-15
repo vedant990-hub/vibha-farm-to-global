@@ -191,13 +191,6 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       description: 'Book a video call with our team',
       action: 'Book Now',
       color: 'gradient-gold'
-    },
-    {
-      icon: Globe,
-      title: 'Track Shipment',
-      description: 'Track your order status online',
-      action: 'Track Order',
-      color: 'gradient-primary'
     }
   ];
 
@@ -205,12 +198,10 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
-        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url(/hero-agriculture.jpg)`,
-            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
+            backgroundImage: `url(/contact.jpeg)`
           }}
         ></div>
         
@@ -429,16 +420,35 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {quickActions.map((action, index) => (
-              <Card key={index} className="hover-lift cursor-pointer">
+              <Card key={index} className="hover-lift">
                 <CardContent className="p-4 sm:p-6 text-center">
-                  <div className={`w-16 h-16 bg-${action.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <div className={`w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4`}>
                     <action.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="font-heading text-base sm:text-lg font-semibold mb-2">{action.title}</h3>
                   <p className="text-muted-foreground text-sm mb-4">{action.description}</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => {
+                      if (action.title === 'Product Catalog') {
+                        // Download PDF functionality
+                        const link = document.createElement('a');
+                        link.href = '/product-catalog.pdf'; // You'll need to add this PDF to public folder
+                        link.download = 'Vibha_Exim_Product_Catalog.pdf';
+                        link.click();
+                      } else if (action.title === 'WhatsApp') {
+                        // WhatsApp chat functionality
+                        window.open('https://wa.me/919833166617?text=Hi, I would like to know more about your products', '_blank');
+                      } else if (action.title === 'Schedule Meeting') {
+                        // Schedule meeting functionality
+                        window.open('https://calendly.com/vibha-exim/meeting', '_blank');
+                      }
+                    }}
+                  >
                     {action.action}
                   </Button>
                 </CardContent>
@@ -449,13 +459,13 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       </section>
 
       {/* Office Locations */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               Our Offices
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto px-4 sm:px-0">
               Visit us at our offices across India for face-to-face meetings
             </p>
           </div>
@@ -545,7 +555,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
             <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100">
               Call Us Now
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-black hover:bg-white hover:text-primary">
               WhatsApp Chat
             </Button>
           </div>

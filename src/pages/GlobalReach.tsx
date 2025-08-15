@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Globe, MapPin, Truck, Ship, Plane, Clock } from 'lucide-react';
-import globalMapImage from '@/assets/global-map.jpg';
 
 interface GlobalReachProps {
   currentLang: string;
@@ -103,12 +102,10 @@ const GlobalReach: React.FC<GlobalReachProps> = ({ currentLang }) => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
-        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url(${globalMapImage})`,
-            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
+            backgroundImage: `url(/world.jpg)`
           }}
         ></div>
         
@@ -343,7 +340,7 @@ const GlobalReach: React.FC<GlobalReachProps> = ({ currentLang }) => {
 
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-16 h-16 bg-gradient-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-lg font-semibold mb-2">Strategic Location</h3>
@@ -355,7 +352,7 @@ const GlobalReach: React.FC<GlobalReachProps> = ({ currentLang }) => {
 
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Truck className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-lg font-semibold mb-2">Flexible Solutions</h3>

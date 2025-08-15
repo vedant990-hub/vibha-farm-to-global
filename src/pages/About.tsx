@@ -12,12 +12,10 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
-        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url(/hero-agriculture.jpg)`,
-            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
+            backgroundImage: `url(/flowerbg.jpg)`
           }}
         ></div>
         
@@ -89,7 +87,7 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
 
             <Card className="hover-lift">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-gradient-saffron rounded-full flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-6">
                   <Eye className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-primary mb-4">Our Vision</h3>
@@ -129,7 +127,7 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
 
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-16 h-16 bg-gradient-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Heart className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-lg font-semibold mb-2">Trust & Integrity</h3>
@@ -141,7 +139,7 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
 
             <Card className="hover-lift text-center">
               <CardContent className="p-6">
-                <div className="w-16 h-16 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-lg font-semibold mb-2">Customer Focus</h3>
@@ -329,7 +327,7 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
       <section style={{ background: '#f4f8fd' }} className="w-full py-20 flex flex-col items-center justify-center">
         <div style={{ maxWidth: 700 }} className="w-full mx-auto px-4 sm:px-6 text-center">
           <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#17416d] mb-4 sm:mb-6">
-            Vedanta Healthcare – <span style={{ color: '#3b82f6' }}>A Mission Beyond Business</span>
+            Vedanta Healthcare – <span style={{ color: 'green' }}>A Mission Beyond Business</span>
           </h2>
           <p className="text-base sm:text-lg text-[#334155] mb-6 sm:mb-8 md:mb-10 leading-relaxed">
             Founded by Mr. Vishnudas V. Pawar, Vedanta Healthcare is a mission-led initiative dedicated to delivering affordable, compassionate medical care across India.
@@ -356,7 +354,7 @@ const About: React.FC<AboutProps> = ({ currentLang }) => {
             href="https://vedantahealthcare.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#2563eb] text-white font-semibold rounded-full px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg shadow-soft hover:bg-[#17416d] hover:shadow-medium transition-all duration-200 hover:scale-105"
+            className="inline-block bg-[green] text-white font-semibold rounded-full px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg shadow-soft hover:bg-[#17416d] hover:shadow-medium transition-all duration-200 hover:scale-105"
           >
             Discover Vedanta Healthcare
           </a>

@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 font-body transition-all backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 font-body transition-all backdrop-blur-md bg-black/20">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 md:py-3">
           {/* Logo */}
@@ -27,10 +27,10 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
               alt="Vibha Exim Logo"
             />
             <div className="hidden sm:block">
-              <h1 className="font-heading font-bold text-xl md:text-2xl text-primary whitespace-nowrap">Vibha Exim Global Services</h1>
+              <h1 className="font-heading font-bold text-xl md:text-2xl text-white whitespace-nowrap">Vibha Exim Global Services</h1>
             </div>
             <div className="sm:hidden">
-              <h1 className="font-heading font-bold text-lg text-primary">Vibha Exim</h1>
+              <h1 className="font-heading font-bold text-lg text-white">Vibha Exim</h1>
             </div>
           </Link>
 
@@ -38,31 +38,31 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
           <nav className="hidden lg:flex items-center gap-8">
             <Link 
               to="/about"
-              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/about' ? 'border-primary text-primary' : ''}`}
+              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/about' ? 'border-white text-white' : ''}`}
             >
               About Us
             </Link>
             <Link 
               to="/products"
-              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/products' ? 'border-primary text-primary' : ''}`}
+              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/products' ? 'border-white text-white' : ''}`}
             >
               Products
             </Link>
             <Link 
               to="/global-reach"
-              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/global-reach' ? 'border-primary text-primary' : ''}`}
+              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/global-reach' ? 'border-white text-white' : ''}`}
             >
               Global Reach
             </Link>
             <Link 
               to="/testimonials"
-              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/testimonials' ? 'border-primary text-primary' : ''}`}
+              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/testimonials' ? 'border-white text-white' : ''}`}
             >
               Testimonials
             </Link>
             <Link 
               to="/contact"
-              className={`text-foreground px-1 pb-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition-all font-medium ${location.pathname === '/contact' ? 'border-primary text-primary' : ''}`}
+              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/contact' ? 'border-white text-white' : ''}`}
             >
               Contact
             </Link>
@@ -79,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
             <Button 
               variant="outline" 
               size="icon" 
-              className="lg:hidden"
+              className="lg:hidden text-white border-white hover:bg-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -89,39 +89,39 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-border/20 backdrop-blur-md">
+          <div className="lg:hidden border-t border-white/20 backdrop-blur-md bg-black/30">
             <nav className="py-4 space-y-2">
               <Link 
                 to="/about"
-                className={`block px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors ${location.pathname === '/about' ? 'bg-muted text-primary' : ''}`}
+                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/about' ? 'bg-white/20 text-white' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link 
                 to="/products"
-                className={`block px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors ${location.pathname === '/products' ? 'bg-muted text-primary' : ''}`}
+                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/products' ? 'bg-white/20 text-white' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Products
               </Link>
               <Link 
                 to="/global-reach"
-                className={`block px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors ${location.pathname === '/global-reach' ? 'bg-muted text-primary' : ''}`}
+                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/global-reach' ? 'bg-white/20 text-white' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Global Reach
               </Link>
               <Link 
                 to="/testimonials"
-                className={`block px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors ${location.pathname === '/testimonials' ? 'bg-muted text-primary' : ''}`}
+                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/testimonials' ? 'bg-white/20 text-white' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Testimonials
               </Link>
               <Link 
                 to="/contact"
-                className={`block px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors ${location.pathname === '/contact' ? 'bg-muted text-primary' : ''}`}
+                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/contact' ? 'bg-white/20 text-white' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
