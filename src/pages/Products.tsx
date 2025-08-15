@@ -220,29 +220,34 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-16 md:py-20 bg-gradient-hero text-white relative overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
+        <div className="absolute inset-0 bg-gradient-hero opacity-85"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url(${productsImage})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          style={{ 
+            backgroundImage: `url(${productsImage})`,
+            filter: 'contrast(1.1) brightness(1.05) saturate(1.1)'
+          }}
         ></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+        
+        <div className="relative container mx-auto px-4 z-10">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
               Premium Export Products
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl opacity-90 mb-6 md:mb-8 px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl opacity-90 mb-6 md:mb-8 px-4">
               From the finest Indian farms to your global markets - quality guaranteed
             </p>
             <div className="flex flex-wrap justify-center gap-3 md:gap-4 px-4">
-              <Badge variant="secondary" className="bg-white text-primary px-3 py-2 md:px-4 md:py-2 text-sm md:text-lg">
+              <Badge variant="secondary" className="bg-white text-primary px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 text-xs sm:text-sm md:text-lg">
                 50+ Product Varieties
               </Badge>
-              <Badge variant="secondary" className="bg-white text-primary px-3 py-2 md:px-4 md:py-2 text-sm md:text-lg">
+              <Badge variant="secondary" className="bg-white text-primary px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 text-xs sm:text-sm md:text-lg">
                 FSSAI Certified
               </Badge>
-              <Badge variant="secondary" className="bg-white text-primary px-3 py-2 md:px-4 md:py-2 text-sm md:text-lg">
+              <Badge variant="secondary" className="bg-white text-primary px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 text-xs sm:text-sm md:text-lg">
                 ISO 22000:2018
               </Badge>
             </div>
@@ -254,21 +259,21 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
       <section className="py-12 md:py-20 bg-muted/30">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
               Our Product Categories
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Explore our comprehensive range of premium agricultural products
             </p>
           </div>
 
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8 md:mb-12 bg-white shadow-soft">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-6 md:mb-8 lg:mb-12 bg-white shadow-soft h-auto">
               {Object.entries(productCategories).map(([key, category]) => (
-                <TabsTrigger key={key} value={key} className="text-sm font-medium data-[state=active]:bg-accent data-[state=active]:text-accent-foreground">
+                <TabsTrigger key={key} value={key} className="text-xs sm:text-sm font-medium data-[state=active]:bg-accent data-[state=active]:text-accent-foreground p-2 sm:p-3">
                   <span className="mr-2">{category.icon}</span>
                   <span className="hidden sm:inline">{category.name}</span>
-                  <span className="sm:hidden">{category.name.split(' ')[0]}</span>
+                  <span className="sm:hidden text-xs">{category.name.split(' ')[0]}</span>
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -276,20 +281,20 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
             {Object.entries(productCategories).map(([key, category]) => (
                              <TabsContent key={key} value={key}>
                  <div className="mb-8 md:mb-12 text-center">
-                   <h3 className="font-heading text-2xl md:text-3xl font-bold text-primary mb-3 md:mb-4">
+                  <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-3 md:mb-4">
                      {category.name}
                    </h3>
-                   <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
                      {category.description}
                    </p>
                  </div>
 
-                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                    {category.products.map((product, index) => (
-                     <Card key={index} className="hover-lift flex flex-col justify-between rounded-xl shadow-soft overflow-hidden min-h-[500px]">
+                    <Card key={index} className="hover-lift flex flex-col justify-between rounded-xl shadow-soft overflow-hidden min-h-[450px] sm:min-h-[500px]">
                        <CardContent className="p-0 flex flex-col h-full">
                          {/* Product Image Section - 60% of card height */}
-                         <div className="product-image h-[60%] min-h-[300px] relative">
+                        <div className="product-image h-[60%] min-h-[250px] sm:min-h-[300px] relative">
                            {product.name === 'Moringa Powder' ? (
                              <img 
                                src={moringaImage} 
@@ -361,23 +366,23 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
                          </div>
 
                          {/* Product Details - 40% of card height */}
-                         <div className="product-info flex flex-col gap-3 flex-grow p-4">
+                        <div className="product-info flex flex-col gap-2 sm:gap-3 flex-grow p-3 sm:p-4">
                            {/* Product Header */}
                            <div>
-                             <h4 className="font-heading text-xl md:text-2xl font-bold text-primary mb-2">
+                            <h4 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-primary mb-2">
                                {product.name}
                              </h4>
                            </div>
 
                            {/* Product Tags */}
-                           <div className="flex flex-wrap gap-2 mb-3">
+                          <div className="flex flex-wrap gap-1 sm:gap-2 mb-2 sm:mb-3">
                              {product.varieties.slice(0, 3).map((variety, i) => (
-                               <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground border-border">
+                              <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground border-border px-2 py-1">
                                  {variety}
                                </Badge>
                              ))}
                              {product.certifications.slice(0, 2).map((cert, i) => (
-                               <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground">
+                              <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground px-2 py-1">
                                  <Award className="h-3 w-3 mr-1" />
                                  {cert}
                                </Badge>
@@ -385,14 +390,14 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
                            </div>
 
                            {/* Product Specifications Grid */}
-                           <div className="grid grid-cols-1 gap-2 text-sm flex-grow">
+                          <div className="grid grid-cols-1 gap-1 sm:gap-2 text-xs sm:text-sm flex-grow">
                              <div className="flex items-center gap-2">
                                <span className="text-muted-foreground font-medium">Origin:</span>
-                               <span className="font-medium">{product.origin}</span>
+                              <span className="font-medium text-xs sm:text-sm">{product.origin}</span>
                              </div>
                              <div className="flex items-center gap-2">
                                <span className="text-muted-foreground font-medium">Packaging:</span>
-                               <span className="font-medium">{product.packaging}</span>
+                              <span className="font-medium text-xs sm:text-sm">{product.packaging}</span>
                              </div>
                              {product.protein && (
                                <div className="flex items-center gap-2">
@@ -428,11 +433,11 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
                          </div>
 
                          {/* Action Button - Full width with larger padding */}
-                         <div className="p-4 pt-0">
+                        <div className="p-3 sm:p-4 pt-0">
                            <Button 
                              asChild
-                             size="lg" 
-                             className="w-full bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft hover:shadow-medium transition-all duration-200 hover:scale-105 py-3 px-6"
+                            size="default" 
+                            className="w-full bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft hover:shadow-medium transition-all duration-200 hover:scale-105 py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                            >
                              <Link to={`/enquiry/${product.enquiryId}`}>
                                <Send className="h-4 w-4 mr-2" />
@@ -454,22 +459,22 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
               Quality Assurance
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Every product undergoes rigorous quality checks to ensure excellence
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             <Card className="hover-lift">
-              <CardContent className="p-6 text-center">
+              <CardContent className="p-4 sm:p-6 text-center">
                 <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold mb-3">Source Verification</h3>
-                <p className="text-muted-foreground">
+                <h3 className="font-heading text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Source Verification</h3>
+                <p className="text-sm sm:text-base text-muted-foreground">
                   Direct partnerships with verified farmers and rigorous source authentication
                 </p>
               </CardContent>
@@ -505,17 +510,17 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
             Ready to Place Your Order?
           </h2>
-          <p className="text-lg md:text-xl mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto px-4">
             Get competitive quotes for all our premium products with flexible packaging and delivery options
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
-            <Button size="lg" variant="secondary" className="bg-accent text-accent-foreground hover:bg-accent-hover shadow-soft hover:scale-105 transition-all duration-200">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent-hover shadow-soft hover:scale-105 transition-all duration-200">
               Request Product Catalog
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all duration-200">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all duration-200">
               Get Custom Quote
             </Button>
           </div>
