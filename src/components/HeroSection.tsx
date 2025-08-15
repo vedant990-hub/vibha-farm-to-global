@@ -14,12 +14,23 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-primary/60 to-transparent"></div>
+      {/* Video Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-95"
+        >
+          <source src="/output.mp4" type="video/mp4" />
+          
+          {/* Fallback to image if video fails to load */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          ></div>
+        </video>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -29,13 +40,13 @@ const HeroSection: React.FC = () => {
               🌾 Premium Agricultural Exports from India
             </span>
           </div>
-          <h1 className="font-heading text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+          <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight drop-shadow-lg">
             From Indian
             <span className="text-accent block">Farms</span>
             to Global
             <span className="text-secondary block">Markets</span>
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl leading-relaxed font-body">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-6 md:mb-8 max-w-2xl leading-relaxed font-body">
             Trusted exporters of premium dal, pulses, grains, and spices. 
             Connecting the finest Indian agricultural products to wholesalers 
             and importers across UAE, Saudi Arabia, Qatar, and South Asia.

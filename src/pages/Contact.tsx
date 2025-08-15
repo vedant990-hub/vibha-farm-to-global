@@ -191,36 +191,36 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       description: 'Book a video call with our team',
       action: 'Book Now',
       color: 'gradient-gold'
-    },
-    {
-      icon: Globe,
-      title: 'Track Shipment',
-      description: 'Track your order status online',
-      action: 'Track Order',
-      color: 'gradient-primary'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background pt-24">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
+      <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url(/contact.jpeg)`
+          }}
+        ></div>
+        
+        <div className="relative container mx-auto px-4 z-10">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
               Contact Us
             </h1>
-            <p className="text-xl md:text-2xl opacity-90 mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl opacity-90 mb-6 md:mb-8 px-4 sm:px-0">
               Ready to partner with us? Get in touch for quotes, product information, or any inquiries
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Badge variant="secondary" className="bg-white text-primary px-4 py-2 text-lg">
+              <Badge variant="secondary" className="bg-white text-primary px-3 py-2 text-sm sm:text-base md:text-lg">
                 24/7 Customer Support
               </Badge>
-              <Badge variant="secondary" className="bg-white text-primary px-4 py-2 text-lg">
+              <Badge variant="secondary" className="bg-white text-primary px-3 py-2 text-sm sm:text-base md:text-lg">
                 Quick Response Time
               </Badge>
-              <Badge variant="secondary" className="bg-white text-primary px-4 py-2 text-lg">
+              <Badge variant="secondary" className="bg-white text-primary px-3 py-2 text-sm sm:text-base md:text-lg">
                 Global Reach
               </Badge>
             </div>
@@ -231,23 +231,23 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       {/* Contact Form & Info */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <Card className="shadow-strong">
                 <CardHeader>
-                  <CardTitle className="font-heading text-2xl text-primary">
+                  <CardTitle className="font-heading text-xl sm:text-2xl text-primary">
                     Get a Quote
                   </CardTitle>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm sm:text-base text-muted-foreground">
                     Fill out the form below and we'll get back to you within 24 hours
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
+                        <Label htmlFor="name" className="text-sm font-medium">Full Name *</Label>
                         <Input
                           id="name"
                           value={formData.name}
@@ -257,7 +257,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
+                        <Label htmlFor="email" className="text-sm font-medium">Email Address *</Label>
                         <Input
                           id="email"
                           type="email"
@@ -271,7 +271,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
 
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="company">Company Name *</Label>
+                        <Label htmlFor="company" className="text-sm font-medium">Company Name *</Label>
                         <Input
                           id="company"
                           value={formData.company}
@@ -281,7 +281,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="country">Country *</Label>
+                        <Label htmlFor="country" className="text-sm font-medium">Country *</Label>
                         <Popover open={countryOpen} onOpenChange={setCountryOpen}>
                           <PopoverTrigger asChild>
                             <Button
@@ -329,7 +329,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
 
                     <div className="grid md:grid-cols-1 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
+                        <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
                         <Input
                           id="phone"
                           value={formData.phone}
@@ -342,7 +342,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                     
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
+                      <Label htmlFor="message" className="text-sm font-medium">Message *</Label>
                       <Textarea
                         id="message"
                         value={formData.message}
@@ -353,7 +353,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-gradient-primary hover:bg-primary-hover text-white">
+                    <Button type="submit" size="lg" className="w-full bg-gradient-primary hover:bg-primary-hover text-white text-sm sm:text-base">
                       <Send className="mr-2 h-5 w-5" />
                       {isSubmitting ? 'Sending...' : 'Send Quote Request'}
                     </Button>
@@ -388,14 +388,14 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <Card key={index} className="hover-lift">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
                         <info.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-heading text-lg font-semibold mb-1">{info.title}</h3>
-                        <p className="font-medium mb-1">{info.primary}</p>
+                        <h3 className="font-heading text-base sm:text-lg font-semibold mb-1">{info.title}</h3>
+                        <p className="font-medium mb-1 text-sm sm:text-base">{info.primary}</p>
                         <p className="text-muted-foreground text-sm mb-2">{info.secondary}</p>
                         <p className="text-xs text-muted-foreground">{info.description}</p>
                       </div>
@@ -412,24 +412,43 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
               Quick Actions
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
               Fast ways to get the information you need
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {quickActions.map((action, index) => (
-              <Card key={index} className="hover-lift cursor-pointer">
-                <CardContent className="p-6 text-center">
-                  <div className={`w-16 h-16 bg-${action.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
+              <Card key={index} className="hover-lift">
+                <CardContent className="p-4 sm:p-6 text-center">
+                  <div className={`w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4`}>
                     <action.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="font-heading text-lg font-semibold mb-2">{action.title}</h3>
+                  <h3 className="font-heading text-base sm:text-lg font-semibold mb-2">{action.title}</h3>
                   <p className="text-muted-foreground text-sm mb-4">{action.description}</p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => {
+                      if (action.title === 'Product Catalog') {
+                        // Download PDF functionality
+                        const link = document.createElement('a');
+                        link.href = '/product-catalog.pdf'; // You'll need to add this PDF to public folder
+                        link.download = 'Vibha_Exim_Product_Catalog.pdf';
+                        link.click();
+                      } else if (action.title === 'WhatsApp') {
+                        // WhatsApp chat functionality
+                        window.open('https://wa.me/919833166617?text=Hi, I would like to know more about your products', '_blank');
+                      } else if (action.title === 'Schedule Meeting') {
+                        // Schedule meeting functionality
+                        window.open('https://calendly.com/vibha-exim/meeting', '_blank');
+                      }
+                    }}
+                  >
                     {action.action}
                   </Button>
                 </CardContent>
@@ -440,13 +459,13 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       </section>
 
       {/* Office Locations */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               Our Offices
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto px-4 sm:px-0">
               Visit us at our offices across India for face-to-face meetings
             </p>
           </div>
@@ -454,13 +473,13 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
           <div className="flex justify-center">
             {officeLocations.map((office, index) => (
               <Card key={index} className="hover-lift max-w-md">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 bg-gradient-saffron rounded-full flex items-center justify-center">
                       <Building className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-heading text-xl font-semibold">{office.city}</h3>
+                      <h3 className="font-heading text-lg sm:text-xl font-semibold">{office.city}</h3>
                       <Badge variant="secondary" className="text-xs">{office.type}</Badge>
                     </div>
                   </div>
@@ -490,10 +509,10 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl font-bold text-primary mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
               Find Us on Map
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
               Located in the heart of Mumbai's business district
             </p>
           </div>
@@ -502,7 +521,7 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.2!2d72.8667!3d19.076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644ed87%3A0xdecc1499814c163f!2sGokul%20Residency%20H%20Building%2C%20Gokul%20Gagan%2C%20Kandivali%2C%20Dattani%20Park%2C%20Thakur%20Village%2C%20Kandivali%20East%2C%20Mumbai%2C%20Maharashtra%20400101%2C%20India!5e0!3m2!1sen!2sin!4v1703123456789"
               width="100%"
-              height="450"
+              height="300"
               style={{ border: 0, cursor: 'grab' }}
               allowFullScreen={true}
               loading="lazy"
@@ -510,23 +529,33 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
               title="Vibha Exim Office Location - Gokul Residency H Building, Kandivali East, Mumbai"
             ></iframe>
           </div>
+          
+          {/* Mobile-friendly map styles */}
+          <style jsx>{`
+            @media (min-width: 640px) {
+              iframe { height: 400px !important; }
+            }
+            @media (min-width: 768px) {
+              iframe { height: 450px !important; }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-heading text-4xl font-bold mb-6">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
             Ready to Start Your Partnership?
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto px-4 sm:px-0">
             Join hundreds of satisfied importers who trust Vibha Exim for premium agricultural products
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100">
               Call Us Now
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-black hover:bg-white hover:text-primary">
               WhatsApp Chat
             </Button>
           </div>

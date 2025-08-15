@@ -49,7 +49,7 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(120 40% 15%), hsl(120 45% 20%));
     --gradient-secondary: linear-gradient(135deg, hsl(120 60% 90%), hsl(120 55% 85%));
     --gradient-accent: linear-gradient(135deg, hsl(45 100% 51%), hsl(45 95% 46%));
-    --gradient-hero: linear-gradient(135deg, hsl(120 40% 15%) 0%, hsl(120 45% 25%) 50%, hsl(45 100% 51%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(120 40% 15%) 0%, hsl(120 45% 25%) 50%, hsl(109, 46%, 12%) 100%);
 
     /* Professional Shadows */
     --shadow-soft: 0 2px 8px hsl(120 40% 15% / 0.08);
@@ -202,8 +202,15 @@ All colors MUST be HSL.
   }
   
   .hover-lift:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-strong);
+  }
+  
+  /* Mobile-specific hover effects */
+  @media (max-width: 768px) {
+    .hover-lift:hover {
+      transform: translateY(-1px);
+    }
   }
 
   /* Text utilities */
@@ -212,5 +219,21 @@ All colors MUST be HSL.
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  
+  /* Mobile-friendly spacing */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Ensure touch targets are large enough on mobile */
+  @media (max-width: 768px) {
+    button, .btn, a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
   }
 }
