@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 interface HeaderProps {
   currentLang: string;
@@ -13,13 +14,23 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { scrollToTop } = useSmoothScroll();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 font-body transition-all backdrop-blur-md bg-black/20">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 md:py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group focus:outline-none" aria-label="Go to home page">
+          <Link 
+            to="/" 
+            className="flex items-center gap-3 group focus:outline-none" 
+            aria-label="Go to home page"
+            onClick={() => {
+              if (location.pathname === '/') {
+                scrollToTop();
+              }
+            }}
+          >
             <img
               src="/vibha_logo.jpg"
               className="h-10 w-10 md:h-12 md:w-12 object-contain transition-transform group-hover:scale-105"
@@ -77,9 +88,9 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
               <Link to="/contact">Get Quote</Link>
             </Button>
             <Button 
-              variant="outline" 
+              variant="ghost" 
               size="icon" 
-              className="lg:hidden text-white border-white hover:bg-white/10"
+              className="lg:hidden text-white border-white hover:bg-transparent bg-transparent"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

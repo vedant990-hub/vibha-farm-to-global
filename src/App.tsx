@@ -13,11 +13,13 @@ import Contact from "./pages/Contact";
 import ProductEnquiry from "./pages/ProductEnquiry";
 import NotFound from "./pages/NotFound";
 import Layout from "@/components/Layout";
+import ScrollProgress from "@/components/ScrollProgress";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
-// Custom hook for scroll to top
-const useScrollToTop = () => {
+// Custom hook for scroll to top on route change
+const useScrollToTopOnRouteChange = () => {
   const { pathname } = useLocation();
   
   useEffect(() => {
@@ -27,8 +29,8 @@ const useScrollToTop = () => {
 };
 
 // Component that uses the hook
-const ScrollToTop = () => {
-  useScrollToTop();
+const ScrollToTopOnRouteChange = () => {
+  useScrollToTopOnRouteChange();
   return null;
 };
 
@@ -38,7 +40,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
+        <ScrollToTopOnRouteChange />
+        <ScrollProgress />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home currentLang="en" />} />
