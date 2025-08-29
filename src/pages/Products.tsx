@@ -34,37 +34,37 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
         {
           name: 'Toor Dal (Pigeon Peas)',
           varieties: ['Organic', 'Conventional', 'Split', 'Whole'],
-          origin: 'Maharashtra, Karnataka',
+          origin: 'India',
           protein: '22-24%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI', 'APEDA'],
           enquiryId: 'toor-dal'
         },
         {
           name: 'Moong Dal (Green Gram)',
           varieties: ['Whole', 'Split', 'Husked'],
-          origin: 'Rajasthan, Madhya Pradesh',
+          origin: 'India',
           protein: '24-26%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000', 'Organic'],
+          certifications: ['FSSAI', 'APEDA', 'Organic'],
           enquiryId: 'moong-dal'
         },
         {
           name: 'Chana Dal (Bengal Gram)',
           varieties: ['Desi', 'Kabuli', 'Split'],
-          origin: 'Madhya Pradesh, Maharashtra',
+          origin: 'India',
           protein: '20-22%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI', 'APEDA'],
           enquiryId: 'chana-dal'
         },
         {
           name: 'Masoor Dal (Red Lentils)',
           varieties: ['Whole', 'Split', 'Football'],
-          origin: 'Uttar Pradesh, Bihar',
+          origin: 'India',
           protein: '26-28%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI', 'APEDA'],
           enquiryId: 'masoor-dal'
         }
       ]
@@ -77,34 +77,34 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
         {
           name: 'Basmati Rice',
           varieties: ['1121', 'Pusa', 'Traditional'],
-          origin: 'Punjab, Haryana',
+          origin: 'India',
           grainLength: '7-8mm',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000', 'GI Tag'],
+          certifications: ['FSSAI', 'GI Tag'],
           enquiryId: 'basmati-rice'
         },
         {
           name: 'Non-Basmati Rice',
           varieties: ['IR64', 'Sona Masuri', 'PR11'],
-          origin: 'Andhra Pradesh, Telangana',
+          origin: 'India',
           grainLength: '5-6mm',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'non-basmati-rice'
         },
         {
           name: 'Wheat',
           varieties: ['Durum', 'Hard Red', 'Soft White'],
-          origin: 'Punjab, Uttar Pradesh',
+          origin: 'India',
           protein: '11-14%',
           packaging: '50kg Bags, Bulk',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'wheat'
         },
         {
           name: 'Millets',
           varieties: ['Pearl', 'Finger', 'Foxtail'],
-          origin: 'Karnataka, Maharashtra',
+          origin: 'India',
           fiber: 'High',
           packaging: '25kg, 50kg Bags',
           certifications: ['FSSAI', 'Organic'],
@@ -120,37 +120,37 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
         {
           name: 'Turmeric Powder',
           varieties: ['Alleppey', 'Madras', 'Organic'],
-          origin: 'Tamil Nadu, Andhra Pradesh',
+          origin: 'India',
           curcumin: '2.5-5%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'turmeric'
         },
         {
           name: 'Red Chili Powder',
           varieties: ['Kashmiri', 'Byadgi', 'Guntur'],
-          origin: 'Andhra Pradesh, Karnataka',
+          origin: 'India',
           heatLevel: 'Medium-Hot',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'red-chili'
         },
         {
           name: 'Cumin Seeds',
           varieties: ['Whole', 'Ground', 'Organic'],
-          origin: 'Gujarat, Rajasthan',
+          origin: 'India',
           oilContent: '2-4%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'cumin'
         },
         {
           name: 'Coriander Seeds',
           varieties: ['Whole', 'Ground', 'Organic'],
-          origin: 'Rajasthan, Madhya Pradesh',
+          origin: 'India',
           oilContent: '0.3-1%',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'coriander'
         }
       ]
@@ -163,57 +163,66 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
         {
           name: 'Moringa Powder',
           varieties: ['Organic', 'Conventional', 'Premium Grade'],
-          origin: 'Tamil Nadu, Karnataka',
+          origin: 'India',
           description: 'Nutrient-rich herbal powder made from dried moringa leaves, ideal for health, wellness, and nutrition export markets.',
           benefits: 'High in antioxidants, Anti-inflammatory, Rich in vitamins',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000', 'Organic'],
+          certifications: ['FSSAI', 'Organic'],
           enquiryId: 'moringa-powder'
         },
         {
           name: 'Turmeric Powder',
           varieties: ['Alleppey', 'Madras', 'Organic', 'High Curcumin'],
-          origin: 'Tamil Nadu, Andhra Pradesh',
+          origin: 'India',
           benefits: 'High curcumin content, Anti-inflammatory, Immunity booster',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'turmeric-powder'
         },
         {
           name: 'Ashwagandha Root',
           varieties: ['Whole Root', 'Powder', 'Organic'],
-          origin: 'Madhya Pradesh, Rajasthan',
+          origin: 'India',
           benefits: 'Adaptogenic, Stress reduction, Energy booster',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000', 'Organic'],
+          certifications: ['FSSAI', 'Organic'],
           enquiryId: 'ashwagandha-root'
         },
         {
           name: 'Giloy (Tinospora cordifolia)',
           varieties: ['Stem Powder', 'Whole Plant', 'Organic'],
-          origin: 'Uttar Pradesh, Bihar',
+          origin: 'India',
           benefits: 'Immunity enhancer, Detoxifying, Ayurvedic',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'giloy'
         },
         {
           name: 'Tulsi (Holy Basil) Leaves',
           varieties: ['Krishna Tulsi', 'Rama Tulsi', 'Vana Tulsi'],
-          origin: 'Uttar Pradesh, Maharashtra',
+          origin: 'India',
           benefits: 'Antimicrobial, Respiratory health, Sacred herb',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000', 'Organic'],
+          certifications: ['FSSAI', 'Organic'],
           enquiryId: 'tulsi-leaves'
         },
         {
           name: 'Amla (Indian Gooseberry) Powder',
           varieties: ['Wild Amla', 'Cultivated', 'Organic'],
-          origin: 'Uttar Pradesh, Madhya Pradesh',
+          origin: 'India',
           benefits: 'High Vitamin C, Digestive health, Skin health',
           packaging: '25kg, 50kg Bags',
-          certifications: ['FSSAI', 'ISO 22000'],
+          certifications: ['FSSAI'],
           enquiryId: 'amla-powder'
+        },
+        {
+          name: 'Natural Honey',
+          varieties: ['Raw', 'Organic', 'Multiflora'],
+          origin: 'India',
+          benefits: 'Natural sweetener, Antioxidant-rich, Soothes throat',
+          packaging: '500g, 1kg, Bulk',
+          certifications: ['FSSAI'],
+          enquiryId: 'natural-honey'
         }
       ]
     }
@@ -245,9 +254,7 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
               <Badge variant="secondary" className="bg-white text-primary px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 text-xs sm:text-sm md:text-lg">
                 FSSAI Certified
               </Badge>
-              <Badge variant="secondary" className="bg-white text-primary px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 text-xs sm:text-sm md:text-lg">
-                ISO 22000:2018
-              </Badge>
+              
             </div>
           </div>
         </div>
@@ -287,211 +294,220 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
                    </p>
                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                    {category.products.map((product, index) => (
-                    <Card key={index} className="hover-lift flex flex-col justify-between rounded-xl shadow-soft overflow-hidden min-h-[450px] sm:min-h-[500px]">
-                       <CardContent className="p-0 flex flex-col h-full">
-                         {/* Product Image Section - 60% of card height */}
-                        <div className="product-image h-[60%] min-h-[250px] sm:min-h-[300px] relative">
-                           {product.name === 'Moringa Powder' ? (
-                             <img 
-                               src={moringaImage} 
-                               alt="Moringa Powder – Herbal Product for Export" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Toor Dal (Pigeon Peas)' ? (
-                             <img 
-                               src={toorDalImage} 
-                               alt="Toor Dal (Pigeon Peas) – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Moong Dal (Green Gram)' ? (
-                             <img 
-                               src={moongDalImage} 
-                               alt="Moong Dal (Green Gram) – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Chana Dal (Bengal Gram)' ? (
-                             <img 
-                               src={chanaDalImage} 
-                               alt="Chana Dal (Bengal Gram) – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Masoor Dal (Red Lentils)' ? (
-                             <img 
-                               src={masoorDalImage} 
-                               alt="Masoor Dal (Red Lentils) – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Basmati Rice' ? (
-                             <img 
-                               src={basmatiRiceImage} 
-                               alt="Basmati Rice – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Non-Basmati Rice' ? (
-                             <img 
-                               src={nonBasmatiRiceImage} 
-                               alt="Non-Basmati Rice – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Wheat' ? (
-                             <img 
-                               src={wheatImage} 
-                               alt="Wheat – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Millets' ? (
-                             <img 
-                               src={milletsImage} 
-                               alt="Millets – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Turmeric Powder' ? (
-                             <img 
-                               src="/Turmeric Powder.jpg" 
-                               alt="Turmeric Powder – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Red Chili Powder' ? (
-                             <img 
-                               src="/Red Chili Powder.jpg" 
-                               alt="Red Chili Powder – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Cumin Seeds' ? (
-                             <img 
-                               src="/Cumin Seeds.jpg" 
-                               alt="Cumin Seeds – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Coriander Seeds' ? (
-                             <img 
-                               src="/Coriander Seeds.jpg" 
-                               alt="Coriander Seeds – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Ashwagandha Root' ? (
-                             <img 
-                               src="/Ashwagandha Root.jpg" 
-                               alt="Ashwagandha Root – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Giloy (Tinospora cordifolia)' ? (
-                             <img 
-                               src="/Giloy (Tinospora cordifolia).jpg" 
-                               alt="Giloy (Tinospora cordifolia) – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Tulsi (Holy Basil) Leaves' ? (
-                             <img 
-                               src="/Tulsi (Holy Basil) Leaves.jpg" 
-                               alt="Tulsi (Holy Basil) Leaves – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : product.name === 'Amla (Indian Gooseberry) Powder' ? (
-                             <img 
-                               src="/Amla (Indian Gooseberry) Powder.jpg" 
-                               alt="Amla (Indian Gooseberry) Powder – Premium Export Product" 
-                               className="w-full h-full object-cover rounded-t-xl"
-                               loading="lazy"
-                             />
-                           ) : (
-                             <div className="product-placeholder w-full h-full bg-gray-100 flex items-center justify-center rounded-t-xl">
-                               <Package className="h-12 w-12 text-gray-400" />
-                             </div>
-                           )}
-                         </div>
+                    <Card key={index} className="flex flex-col border border-border rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                      <CardContent className="p-4 flex flex-col h-full">
+                         {/* Product Image Section - fixed 250x250 */}
+                        <div className="w-full flex items-center justify-center mb-4">
+                          <div className="w-[250px] h-[250px] overflow-hidden rounded-md">
+                            {product.name === 'Moringa Powder' ? (
+                              <img 
+                                src={moringaImage} 
+                                alt="Moringa Powder – Herbal Product for Export" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Toor Dal (Pigeon Peas)' ? (
+                              <img 
+                                src={toorDalImage} 
+                                alt="Toor Dal (Pigeon Peas) – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Moong Dal (Green Gram)' ? (
+                              <img 
+                                src={moongDalImage} 
+                                alt="Moong Dal (Green Gram) – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Chana Dal (Bengal Gram)' ? (
+                              <img 
+                                src={chanaDalImage} 
+                                alt="Chana Dal (Bengal Gram) – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Masoor Dal (Red Lentils)' ? (
+                              <img 
+                                src={masoorDalImage} 
+                                alt="Masoor Dal (Red Lentils) – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Basmati Rice' ? (
+                              <img 
+                                src={basmatiRiceImage} 
+                                alt="Basmati Rice – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Non-Basmati Rice' ? (
+                              <img 
+                                src={nonBasmatiRiceImage} 
+                                alt="Non-Basmati Rice – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Wheat' ? (
+                              <img 
+                                src={wheatImage} 
+                                alt="Wheat – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Millets' ? (
+                              <img 
+                                src={milletsImage} 
+                                alt="Millets – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Turmeric Powder' ? (
+                              <img 
+                                src="/Turmeric Powder.jpg" 
+                                alt="Turmeric Powder – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Red Chili Powder' ? (
+                              <img 
+                                src="/Red Chili Powder.jpg" 
+                                alt="Red Chili Powder – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Cumin Seeds' ? (
+                              <img 
+                                src="/Cumin Seeds.jpg" 
+                                alt="Cumin Seeds – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Coriander Seeds' ? (
+                              <img 
+                                src="/Coriander Seeds.jpg" 
+                                alt="Coriander Seeds – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Ashwagandha Root' ? (
+                              <img 
+                                src="/Ashwagandha Root.jpg" 
+                                alt="Ashwagandha Root – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Giloy (Tinospora cordifolia)' ? (
+                              <img 
+                                src="/Giloy (Tinospora cordifolia).jpg" 
+                                alt="Giloy (Tinospora cordifolia) – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Tulsi (Holy Basil) Leaves' ? (
+                              <img 
+                                src="/Tulsi (Holy Basil) Leaves.jpg" 
+                                alt="Tulsi (Holy Basil) Leaves – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Amla (Indian Gooseberry) Powder' ? (
+                              <img 
+                                src="/Amla (Indian Gooseberry) Powder.jpg" 
+                                alt="Amla (Indian Gooseberry) Powder – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : product.name === 'Natural Honey' ? (
+                              <img 
+                                src="/honey.jpg" 
+                                alt="Natural Honey – Premium Export Product" 
+                                className="w-[250px] h-[250px] object-cover"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="w-[250px] h-[250px] bg-gray-100 flex items-center justify-center rounded-md">
+                                <Package className="h-12 w-12 text-gray-400" />
+                              </div>
+                            )}
+                          </div>
+                        </div>
 
-                         {/* Product Details - 40% of card height */}
-                        <div className="product-info flex flex-col gap-2 sm:gap-3 flex-grow p-3 sm:p-4">
+                        {/* Product Details */}
+                       <div className="product-info flex flex-col gap-3 flex-grow">
                            {/* Product Header */}
                            <div>
-                            <h4 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-primary mb-2">
-                               {product.name}
-                             </h4>
+                           <h4 className="font-heading text-lg sm:text-xl font-bold text-primary mb-1">
+                                {product.name}
+                              </h4>
                            </div>
-
+ 
                            {/* Product Tags */}
-                          <div className="flex flex-wrap gap-1 sm:gap-2 mb-2 sm:mb-3">
-                             {product.varieties.slice(0, 3).map((variety, i) => (
-                              <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground border-border px-2 py-1">
-                                 {variety}
-                               </Badge>
-                             ))}
-                             {product.certifications.slice(0, 2).map((cert, i) => (
-                              <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground px-2 py-1">
-                                 <Award className="h-3 w-3 mr-1" />
-                                 {cert}
-                               </Badge>
-                             ))}
+                         <div className="flex flex-wrap gap-2 mb-2">
+                              {product.varieties.slice(0, 3).map((variety, i) => (
+                             <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground border border-border px-2 py-1">
+                                  {variety}
+                                </Badge>
+                              ))}
+                              {product.certifications.slice(0, 2).map((cert, i) => (
+                             <Badge key={i} variant="secondary" className="text-xs bg-secondary text-secondary-foreground border border-border px-2 py-1">
+                                  <Award className="h-3 w-3 mr-1" />
+                                  {cert}
+                                </Badge>
+                              ))}
                            </div>
-
-                           {/* Product Specifications Grid */}
-                          <div className="grid grid-cols-1 gap-1 sm:gap-2 text-xs sm:text-sm flex-grow">
-                             <div className="flex items-center gap-2">
-                               <span className="text-muted-foreground font-medium">Origin:</span>
-                              <span className="font-medium text-xs sm:text-sm">{product.origin}</span>
-                             </div>
-                             <div className="flex items-center gap-2">
-                               <span className="text-muted-foreground font-medium">Packaging:</span>
-                              <span className="font-medium text-xs sm:text-sm">{product.packaging}</span>
-                             </div>
-                             {product.protein && (
-                               <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground font-medium">Protein:</span>
-                                 <span className="font-medium">{product.protein}</span>
-                               </div>
-                             )}
+ 
+                          {/* Product Specifications */}
+                         <div className="space-y-1 text-sm">
+                            <div className="flex items-center justify-between">
+                              <span className="text-muted-foreground">Origin</span>
+                              <span className="font-medium">{product.origin}</span>
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <span className="text-muted-foreground">Packaging</span>
+                              <span className="font-medium">{product.packaging}</span>
+                            </div>
+                            {product.protein && (
+                              <div className="flex items-center justify-between">
+                                <span className="text-muted-foreground">Protein</span>
+                                <span className="font-medium">{product.protein}</span>
+                              </div>
+                            )}
                              {product.grainLength && (
-                               <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground font-medium">Grain Length:</span>
-                                 <span className="font-medium">{product.grainLength}</span>
-                               </div>
-                             )}
+                              <div className="flex items-center justify-between">
+                                <span className="text-muted-foreground">Grain Length</span>
+                                <span className="font-medium">{product.grainLength}</span>
+                              </div>
+                            )}
                              {product.curcumin && (
-                               <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground font-medium">Curcumin:</span>
-                                 <span className="font-medium">{product.curcumin}</span>
-                               </div>
-                             )}
+                              <div className="flex items-center justify-between">
+                                <span className="text-muted-foreground">Curcumin</span>
+                                <span className="font-medium">{product.curcumin}</span>
+                              </div>
+                            )}
                              {product.oilContent && (
-                               <div className="flex items-center gap-2">
-                                 <span className="text-muted-foreground font-medium">Oil Content:</span>
-                                 <span className="font-medium">{product.oilContent}</span>
-                               </div>
-                             )}
+                              <div className="flex items-center justify-between">
+                                <span className="text-muted-foreground">Oil Content</span>
+                                <span className="font-medium">{product.oilContent}</span>
+                              </div>
+                            )}
                              {product.benefits && (
-                               <div className="flex items-start gap-2">
-                                 <span className="text-muted-foreground font-medium">Benefits:</span>
-                                 <span className="font-medium text-green-600">{product.benefits}</span>
-                               </div>
-                             )}
+                              <div className="pt-1">
+                                <span className="text-muted-foreground mr-2">Benefits</span>
+                                <span className="font-medium text-green-600">{product.benefits}</span>
+                              </div>
+                            )}
                            </div>
                          </div>
-
-                         {/* Action Button - Full width with larger padding */}
-                        <div className="p-3 sm:p-4 pt-0">
+ 
+                        {/* Action Button - fixed width at bottom */}
+                       <div className="mt-auto pt-2 flex justify-center">
                            <Button 
                              asChild
                             size="default" 
-                            className="w-full bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft hover:shadow-medium transition-all duration-200 hover:scale-105 py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                            className="w-48 bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft transition-all duration-200"
                            >
                              <Link to={`/enquiry/${product.enquiryId}`}>
                                <Send className="h-4 w-4 mr-2" />

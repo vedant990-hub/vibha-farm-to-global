@@ -69,6 +69,7 @@ const ProductEnquiry: React.FC<ProductEnquiryProps> = ({ currentLang }) => {
       'red-chili': 'Red Chili Powder',
       'cumin': 'Cumin Seeds',
       'coriander': 'Coriander Seeds',
+      'natural-honey': 'Natural Honey',
       'default': 'Premium Agricultural Product'
     };
     return products[id || 'default'] || 'Premium Agricultural Product';
@@ -84,6 +85,7 @@ const ProductEnquiry: React.FC<ProductEnquiryProps> = ({ currentLang }) => {
       'red-chili': 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=600&h=400&fit=crop',
       'cumin': 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=600&h=400&fit=crop',
       'coriander': 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=600&h=400&fit=crop',
+      'natural-honey': '/honey.jpg',
       'default': 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=400&fit=crop'
     };
     return images[id || 'default'] || images.default;
@@ -99,6 +101,7 @@ const ProductEnquiry: React.FC<ProductEnquiryProps> = ({ currentLang }) => {
       'red-chili': 'Spices & Seasonings',
       'cumin': 'Spices & Seasonings',
       'coriander': 'Spices & Seasonings',
+      'natural-honey': 'Herbal Products',
       'default': 'Agricultural Products'
     };
     return categories[id || 'default'] || 'Agricultural Products';
@@ -114,6 +117,7 @@ const ProductEnquiry: React.FC<ProductEnquiryProps> = ({ currentLang }) => {
       'red-chili': 'Premium Red Chili Powder with perfect heat and color. Ideal for various cuisines.',
       'cumin': 'Whole Cumin Seeds with intense aroma and flavor. Essential spice for many dishes.',
       'coriander': 'Fresh Coriander Seeds with mild, citrusy flavor. Perfect for seasoning and garnishing.',
+      'natural-honey': 'Pure Natural Honey, minimally processed to preserve enzymes and antioxidants. Ideal as a natural sweetener and for wellness.',
       'default': 'Premium quality agricultural product sourced from the finest farms in India.'
     };
     return descriptions[id || 'default'] || 'Premium quality agricultural product sourced from the finest farms in India.';

@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
@@ -14,10 +13,32 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const { scrollToTop } = useSmoothScroll();
 
+  // Track scroll to switch navbar style for readability
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isHome = location.pathname === '/';
+  const isTransparent = isHome && !hasScrolled;
+  const headerBgClass = isTransparent
+    ? 'bg-transparent'
+    : 'bg-background/90 supports-[backdrop-filter]:bg-background/60 backdrop-blur-md shadow-sm';
+  const brandTextClass = isTransparent ? 'text-white' : 'text-foreground';
+  const linkBaseClass = isTransparent
+    ? 'text-white hover:text-white border-white'
+    : 'text-foreground hover:text-foreground border-foreground/60';
+  const getLinkClass = (path: string) => `px-1 pb-1 border-b-2 border-transparent hover:border-current transition-all font-medium ${linkBaseClass} ${location.pathname === path ? 'border-current' : ''}`;
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 font-body transition-all backdrop-blur-md bg-black/20">
+    <header className={`fixed top-0 left-0 right-0 z-50 font-body transition-all ${headerBgClass}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4 md:py-3">
           {/* Logo */}
@@ -38,10 +59,10 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
               alt="Vibha Exim Logo"
             />
             <div className="hidden sm:block">
-              <h1 className="font-heading font-bold text-xl md:text-2xl text-white whitespace-nowrap">Vibha Exim Global Services</h1>
+              <h1 className={`font-heading font-bold text-xl md:text-2xl whitespace-nowrap ${brandTextClass}`}>Vibha Global Exim Services</h1>
             </div>
             <div className="sm:hidden">
-              <h1 className="font-heading font-bold text-lg text-white">Vibha Exim</h1>
+              <h1 className={`font-heading font-bold text-lg ${brandTextClass}`}>Vibha Global</h1>
             </div>
           </Link>
 
@@ -49,31 +70,31 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
           <nav className="hidden lg:flex items-center gap-8">
             <Link 
               to="/about"
-              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/about' ? 'border-white text-white' : ''}`}
+              className={getLinkClass('/about')}
             >
               About Us
             </Link>
             <Link 
               to="/products"
-              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/products' ? 'border-white text-white' : ''}`}
+              className={getLinkClass('/products')}
             >
               Products
             </Link>
             <Link 
               to="/global-reach"
-              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/global-reach' ? 'border-white text-white' : ''}`}
+              className={getLinkClass('/global-reach')}
             >
               Global Reach
             </Link>
             <Link 
               to="/testimonials"
-              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/testimonials' ? 'border-white text-white' : ''}`}
+              className={getLinkClass('/testimonials')}
             >
               Testimonials
             </Link>
             <Link 
               to="/contact"
-              className={`text-white px-1 pb-1 border-b-2 border-transparent hover:border-white hover:text-white transition-all font-medium ${location.pathname === '/contact' ? 'border-white text-white' : ''}`}
+              className={getLinkClass('/contact')}
             >
               Contact
             </Link>
@@ -90,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="lg:hidden text-white border-white hover:bg-transparent bg-transparent"
+              className={`lg:hidden ${isTransparent ? 'text-white' : 'text-foreground'} bg-transparent hover:bg-transparent`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -100,39 +121,39 @@ const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-white/20 backdrop-blur-md bg-black/30">
+          <div className={`lg:hidden border-t ${isTransparent ? 'border-white/20 bg-black/40' : 'border-border/60 bg-background/95 backdrop-blur-md'}`}>
             <nav className="py-4 space-y-2">
               <Link 
                 to="/about"
-                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/about' ? 'bg-white/20 text-white' : ''}`}
+                className={`block px-4 py-2 rounded-md transition-colors ${isTransparent ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-foreground/10'} ${location.pathname === '/about' ? (isTransparent ? 'bg-white/20 text-white' : 'bg-foreground/10') : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link 
                 to="/products"
-                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/products' ? 'bg-white/20 text-white' : ''}`}
+                className={`block px-4 py-2 rounded-md transition-colors ${isTransparent ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-foreground/10'} ${location.pathname === '/products' ? (isTransparent ? 'bg-white/20 text-white' : 'bg-foreground/10') : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Products
               </Link>
               <Link 
                 to="/global-reach"
-                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/global-reach' ? 'bg-white/20 text-white' : ''}`}
+                className={`block px-4 py-2 rounded-md transition-colors ${isTransparent ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-foreground/10'} ${location.pathname === '/global-reach' ? (isTransparent ? 'bg-white/20 text-white' : 'bg-foreground/10') : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Global Reach
               </Link>
               <Link 
                 to="/testimonials"
-                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/testimonials' ? 'bg-white/20 text-white' : ''}`}
+                className={`block px-4 py-2 rounded-md transition-colors ${isTransparent ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-foreground/10'} ${location.pathname === '/testimonials' ? (isTransparent ? 'bg-white/20 text-white' : 'bg-foreground/10') : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Testimonials
               </Link>
               <Link 
                 to="/contact"
-                className={`block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors ${location.pathname === '/contact' ? 'bg-white/20 text-white' : ''}`}
+                className={`block px-4 py-2 rounded-md transition-colors ${isTransparent ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-foreground/10'} ${location.pathname === '/contact' ? (isTransparent ? 'bg-white/20 text-white' : 'bg-foreground/10') : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact

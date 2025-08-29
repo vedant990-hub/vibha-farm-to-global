@@ -313,7 +313,7 @@ const ContactSection: React.FC = () => {
           <p className="text-muted-foreground mb-4">Located in the heart of Mumbai's business district</p>
           <div className="font-semibold mb-2 text-accent-foreground">Interactive Map</div>
           <iframe
-            title="Vibha Exim Global Services Office Map"
+            title="Vibha Global Exim Services Office Map"
             src="https://www.google.com/maps?q=Gokul+Residency+H+Building,+Gokul+Gagan,+Kandivali,+Dattani+Park,+Thakur+Village,+Kandivali+East,+Mumbai,+Maharashtra+400101&output=embed"
             width="100%"
             height="350"

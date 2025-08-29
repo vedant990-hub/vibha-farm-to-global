@@ -12,7 +12,7 @@ const AboutSection: React.FC = () => {
     {
       icon: Award,
       title: 'Certified Excellence',
-      description: 'FSSAI, ISO, and international export certifications'
+      description: 'FSSAI, APEDA, and international export certifications'
     },
     {
       icon: Truck,
@@ -31,14 +31,14 @@ const AboutSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            About Vibha Exim Global Services
+            About Vibha Global Exim Services
           </span>
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
             Your Trusted Partner in
             <span className="text-primary block">Agricultural Excellence</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            With over a decade of experience in agricultural exports, Vibha Exim Global Services 
+            With over a decade of experience in agricultural exports, Vibha Global Exim Services 
             has established itself as a leading supplier of premium Indian dal, pulses, grains, 
             and spices to international markets.
           </p>
@@ -96,8 +96,8 @@ const AboutSection: React.FC = () => {
               <div className="text-sm opacity-80">Certified</div>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
-              <div className="text-2xl font-bold mb-1">ISO</div>
-              <div className="text-sm opacity-80">22000:2018</div>
+              <div className="text-2xl font-bold mb-1">APEDA</div>
+              <div className="text-sm opacity-80">Certified</div>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
               <div className="text-2xl font-bold mb-1">HACCP</div>

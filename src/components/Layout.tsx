@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppFloat from './WhatsAppFloat';
+import ScrollToTopFloat from './ScrollToTopFloat';
 import { Outlet } from 'react-router-dom';
 
 interface LayoutProps {
@@ -21,6 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main><Outlet /></main>
       <Footer />
       <WhatsAppFloat />
+      <ScrollToTopFloat />
     </div>
   );
 };

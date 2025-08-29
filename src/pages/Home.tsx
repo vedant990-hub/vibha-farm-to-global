@@ -78,7 +78,7 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
                   <Shield className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-lg sm:text-xl font-semibold mb-2">Quality Assured</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">FSSAI, ISO certified products with stringent quality controls</p>
+                <p className="text-sm sm:text-base text-muted-foreground">FSSAI, APEDA certified products with stringent quality controls</p>
               </CardContent>
             </Card>
 
@@ -108,7 +108,7 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
                   <Users className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="font-heading text-lg sm:text-xl font-semibold mb-2">Trusted Partners</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">500+ satisfied importers and growing partnerships</p>
+                <p className="text-sm sm:text-base text-muted-foreground">Building strong relationships with global importers</p>
               </CardContent>
             </Card>
           </div>

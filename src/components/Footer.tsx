@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, MessageCircle, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -31,15 +31,14 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {/* Company Info */}
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                  <span className="text-accent-foreground font-bold text-xl">V</span>
-                </div>
-                <div>
-                  <h2 className="font-heading font-bold text-lg sm:text-xl">Vibha Exim</h2>
-                  <p className="text-sm opacity-90">Global Services</p>
-                </div>
-              </div>
+                             <div className="flex items-center gap-2 mb-6">
+                 <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                   <span className="text-accent-foreground font-bold text-xl">V</span>
+                 </div>
+                 <div>
+                   <h2 className="font-heading font-bold text-lg sm:text-xl">Vibha Global Exim Services</h2>
+                 </div>
+               </div>
               <p className="text-sm opacity-90 mb-4 sm:mb-6">
                 Trusted exporters of premium Indian agricultural products to global markets. 
                 Quality, reliability, and excellence in every shipment.
@@ -136,28 +135,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom footer */}
-        <div className="border-t border-primary-foreground/20 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-            <div className="text-sm opacity-90">
-              © 2025 Vibha Exim Global Services. All rights reserved.
-            </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
-              <span className="text-sm opacity-90">Certified by FSSAI & ISO</span>
-              <Button
-                asChild
-                variant="ghost"
-                size="sm"
-                className="text-primary-foreground hover:text-accent text-sm"
-              >
-                <Link to="/">
-                  <ArrowUp className="h-4 w-4 mr-1" />
-                  Back to Top
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
+                 {/* Bottom footer */}
+         <div className="border-t border-primary-foreground/20 py-6">
+           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+             <div className="text-sm opacity-90">
+               © 2025 Vibha Global Exim Services. All rights reserved.
+             </div>
+             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 mr-16">
+               <span className="text-sm opacity-90">Certified by FSSAI & APEDA</span>
+             </div>
+           </div>
+         </div>
       </div>
     </footer>
   );
