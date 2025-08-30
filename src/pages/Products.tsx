@@ -509,7 +509,7 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
                             size="default" 
                             className="w-48 bg-accent hover:bg-accent-hover text-accent-foreground shadow-soft transition-all duration-200"
                            >
-                             <Link to={`/enquiry/${product.enquiryId}`}>
+                             <Link to="/contact">
                                <Send className="h-4 w-4 mr-2" />
                                {product.name === 'Moringa Powder' ? 'Enquire Now' : 'Send an Enquiry'}
                              </Link>
