@@ -141,14 +141,14 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
       icon: Phone,
       title: 'Phone',
       primary: '+91 98331 66617',
-      secondary: '+91 98331 66617',
+      secondary: '',
       description: 'Call us for immediate assistance'
     },
     {
       icon: Mail,
       title: 'Email',
       primary: 'info@vibhaglobaleximservices.com',
-      secondary: 'info@vibhaglobaleximservices.com',
+      secondary: '',
       description: 'Send us your inquiries anytime'
     },
     {
