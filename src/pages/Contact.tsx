@@ -408,56 +408,6 @@ const Contact: React.FC<ContactProps> = ({ currentLang }) => {
         </div>
       </section>
 
-      {/* Quick Actions */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
-              Quick Actions
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
-              Fast ways to get the information you need
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
-            {quickActions.map((action, index) => (
-              <Card key={index} className="hover-lift">
-                <CardContent className="p-4 sm:p-6 text-center">
-                  <div className={`w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <action.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="font-heading text-base sm:text-lg font-semibold mb-2">{action.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{action.description}</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full"
-                    onClick={() => {
-                      if (action.title === 'Product Catalog') {
-                        // Download PDF functionality
-                        const link = document.createElement('a');
-                        link.href = '/product-catalog.pdf'; // You'll need to add this PDF to public folder
-                        link.download = 'Vibha_Exim_Product_Catalog.pdf';
-                        link.click();
-                      } else if (action.title === 'WhatsApp') {
-                        // WhatsApp chat functionality
-                        window.open('https://wa.me/919833166617?text=Hi, I would like to know more about your products', '_blank');
-                      } else if (action.title === 'Schedule Meeting') {
-                        // Schedule meeting functionality
-                        window.open('https://calendly.com/vibha-exim/meeting', '_blank');
-                      }
-                    }}
-                  >
-                    {action.action}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Office Locations */}
       <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4">
