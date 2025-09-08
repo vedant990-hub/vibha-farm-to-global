@@ -1,110 +1,55 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const Loader: React.FC = () => {
   return (
-    <StyledWrapper>
-      <div className="wrapper">
-        <div className="circle" />
-        <div className="circle" />
-        <div className="circle" />
-        <div className="shadow" />
-        <div className="shadow" />
-        <div className="shadow" />
-      </div>
-    </StyledWrapper>
+    <div className="relative w-[200px] h-[60px] z-[1]">
+      {/* Circles */}
+      <div className="absolute w-[20px] h-[20px] rounded-full bg-white left-[15%] [transform-origin:50%] animate-[circle7124_.5s_alternate_infinite_ease]" />
+      <div className="absolute w-[20px] h-[20px] rounded-full bg-white left-[45%] [transform-origin:50%] animate-[circle7124_.5s_alternate_infinite_ease]" style={{ animationDelay: '.2s' }} />
+      <div className="absolute w-[20px] h-[20px] rounded-full bg-white right-[15%] [transform-origin:50%] animate-[circle7124_.5s_alternate_infinite_ease]" style={{ animationDelay: '.3s' }} />
+
+      {/* Shadows */}
+      <div className="absolute w-[20px] h-[4px] rounded-full bg-black/90 top-[62px] [transform-origin:50%] z-[-1] left-[15%] blur-[1px] animate-[shadow046_.5s_alternate_infinite_ease]" />
+      <div className="absolute w-[20px] h-[4px] rounded-full bg-black/90 top-[62px] [transform-origin:50%] z-[-1] left-[45%] blur-[1px] animate-[shadow046_.5s_alternate_infinite_ease]" style={{ animationDelay: '.2s' }} />
+      <div className="absolute w-[20px] h-[4px] rounded-full bg-black/90 top-[62px] [transform-origin:50%] z-[-1] right-[15%] blur-[1px] animate-[shadow046_.5s_alternate_infinite_ease]" style={{ animationDelay: '.3s' }} />
+
+      <style>
+        {`
+        @keyframes circle7124 {
+          0% {
+            top: 60px;
+            height: 5px;
+            border-radius: 50px 50px 25px 25px;
+            transform: scaleX(1.7);
+          }
+          40% {
+            height: 20px;
+            border-radius: 50%;
+            transform: scaleX(1);
+          }
+          100% {
+            top: 0%;
+          }
+        }
+
+        @keyframes shadow046 {
+          0% {
+            transform: scaleX(1.5);
+          }
+          40% {
+            transform: scaleX(1);
+            opacity: .7;
+          }
+          100% {
+            transform: scaleX(.2);
+            opacity: .4;
+          }
+        }
+        `}
+      </style>
+    </div>
   );
 }
-
-const StyledWrapper = styled.div`
-  .wrapper {
-    width: 200px;
-    height: 60px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .circle {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #fff;
-    left: 15%;
-    transform-origin: 50%;
-    animation: circle7124 .5s alternate infinite ease;
-  }
-
-  @keyframes circle7124 {
-    0% {
-      top: 60px;
-      height: 5px;
-      border-radius: 50px 50px 25px 25px;
-      transform: scaleX(1.7);
-    }
-
-    40% {
-      height: 20px;
-      border-radius: 50%;
-      transform: scaleX(1);
-    }
-
-    100% {
-      top: 0%;
-    }
-  }
-
-  .circle:nth-child(2) {
-    left: 45%;
-    animation-delay: .2s;
-  }
-
-  .circle:nth-child(3) {
-    left: auto;
-    right: 15%;
-    animation-delay: .3s;
-  }
-
-  .shadow {
-    width: 20px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,0.9);
-    position: absolute;
-    top: 62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left: 15%;
-    filter: blur(1px);
-    animation: shadow046 .5s alternate infinite ease;
-  }
-
-  @keyframes shadow046 {
-    0% {
-      transform: scaleX(1.5);
-    }
-
-    40% {
-      transform: scaleX(1);
-      opacity: .7;
-    }
-
-    100% {
-      transform: scaleX(.2);
-      opacity: .4;
-    }
-  }
-
-  .shadow:nth-child(4) {
-    left: 45%;
-    animation-delay: .2s
-  }
-
-  .shadow:nth-child(5) {
-    left: auto;
-    right: 15%;
-    animation-delay: .3s;
-  }`;
 
 export default Loader;
 
