@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Globe, Shield, Truck, Users } from 'lucide-react';
 import heroImage from '@/assets/hero-agriculture.jpg';
+import Loader from '@/components/Loader';
 
 interface HomeProps {
   currentLang: string;
 }
 
 const Home: React.FC<HomeProps> = ({ currentLang }) => {
+  const [isVideoReady, setIsVideoReady] = useState(false);
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -21,7 +23,11 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
             muted
             loop
             playsInline
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover opacity-90"
+            onCanPlay={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+            onLoadedData={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+            onError={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
           >
             <source src="/output.mp4" type="video/mp4" />
             {/* Fallback to image if video fails to load */}
@@ -30,6 +36,7 @@ const Home: React.FC<HomeProps> = ({ currentLang }) => {
               style={{ backgroundImage: `url(${heroImage})` }}
             ></div>
           </video>
+          {/* Local overlay removed; global overlay handles initial load */}
         </div>
         
         <div className="relative container mx-auto px-4 z-10">
