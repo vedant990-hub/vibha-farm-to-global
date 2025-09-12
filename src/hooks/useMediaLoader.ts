@@ -5,32 +5,90 @@ export const useMediaLoader = () => {
   const { setIsLoading } = useLoading();
 
   useEffect(() => {
-    // Show loading initially
     setIsLoading(true);
 
-    // Simple timeout to hide loading after 2 seconds
-    const loadingTimer = setTimeout(() => {
+    // Maximum loading time fallback
+    const maxLoadTime = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 8000); // 8 seconds max
 
-    // Also check for window load event as backup
-    const handleWindowLoad = () => {
-      clearTimeout(loadingTimer);
-      setIsLoading(false);
+    const checkMediaLoading = () => {
+      const images = document.querySelectorAll('img');
+      const videos = document.querySelectorAll('video');
+      
+      const totalMedia = images.length + videos.length;
+      let loadedMedia = 0;
+
+      const checkComplete = () => {
+        loadedMedia++;
+        if (loadedMedia >= totalMedia) {
+          clearTimeout(maxLoadTime);
+          setIsLoading(false);
+        }
+      };
+
+      // If no media elements, hide loading quickly
+      if (totalMedia === 0) {
+        clearTimeout(maxLoadTime);
+        setTimeout(() => setIsLoading(false), 500);
+        return;
+      }
+
+      // Check images
+      images.forEach((img) => {
+        if (img.complete && img.naturalHeight !== 0) {
+          checkComplete();
+        } else if (!img.src || img.src === window.location.href) {
+          checkComplete();
+        } else {
+          const handleLoad = () => {
+            checkComplete();
+            img.removeEventListener('load', handleLoad);
+            img.removeEventListener('error', handleError);
+          };
+          const handleError = () => {
+            checkComplete();
+            img.removeEventListener('load', handleLoad);
+            img.removeEventListener('error', handleError);
+          };
+          img.addEventListener('load', handleLoad);
+          img.addEventListener('error', handleError);
+        }
+      });
+
+      // Check videos
+      videos.forEach((video) => {
+        if (video.readyState >= 2) {
+          checkComplete();
+        } else if (!video.src || video.src === window.location.href) {
+          checkComplete();
+        } else {
+          const handleCanPlay = () => {
+            checkComplete();
+            video.removeEventListener('canplay', handleCanPlay);
+            video.removeEventListener('error', handleError);
+          };
+          const handleError = () => {
+            checkComplete();
+            video.removeEventListener('canplay', handleCanPlay);
+            video.removeEventListener('error', handleError);
+          };
+          video.addEventListener('canplay', handleCanPlay);
+          video.addEventListener('error', handleError);
+        }
+      });
     };
 
-    // If window is already loaded, hide immediately
-    if (document.readyState === 'complete') {
-      clearTimeout(loadingTimer);
-      setIsLoading(false);
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkMediaLoading);
     } else {
-      window.addEventListener('load', handleWindowLoad);
+      setTimeout(checkMediaLoading, 100);
     }
 
-    // Cleanup
     return () => {
-      clearTimeout(loadingTimer);
-      window.removeEventListener('load', handleWindowLoad);
+      clearTimeout(maxLoadTime);
+      document.removeEventListener('DOMContentLoaded', checkMediaLoading);
     };
   }, [setIsLoading]);
 };
