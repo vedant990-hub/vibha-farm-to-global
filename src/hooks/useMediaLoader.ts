@@ -2,66 +2,37 @@ import { useEffect } from 'react';
 import { useLoading } from '../contexts/LoadingContext';
 
 export const useMediaLoader = () => {
-  const { addLoadingItem, removeLoadingItem } = useLoading();
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
-    const images = document.querySelectorAll('img');
-    const videos = document.querySelectorAll('video');
-    
-    const mediaElements = [...Array.from(images), ...Array.from(videos)];
-    
-    if (mediaElements.length === 0) {
-      return;
+    // Show loading initially
+    setIsLoading(true);
+
+    // Simple timeout to hide loading after 2 seconds
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    // Also check for window load event as backup
+    const handleWindowLoad = () => {
+      clearTimeout(loadingTimer);
+      setIsLoading(false);
+    };
+
+    // If window is already loaded, hide immediately
+    if (document.readyState === 'complete') {
+      clearTimeout(loadingTimer);
+      setIsLoading(false);
+    } else {
+      window.addEventListener('load', handleWindowLoad);
     }
 
-    // Add loading items for each media element
-    mediaElements.forEach((element, index) => {
-      const id = `media-${index}`;
-      addLoadingItem(id);
-
-      const handleLoad = () => {
-        removeLoadingItem(id);
-        element.removeEventListener('load', handleLoad);
-        element.removeEventListener('loadeddata', handleLoad);
-        element.removeEventListener('error', handleError);
-      };
-
-      const handleError = () => {
-        removeLoadingItem(id);
-        element.removeEventListener('load', handleLoad);
-        element.removeEventListener('loadeddata', handleLoad);
-        element.removeEventListener('error', handleError);
-      };
-
-      if (element.tagName === 'IMG') {
-        const img = element as HTMLImageElement;
-        if (img.complete && img.naturalHeight !== 0) {
-          // Image already loaded
-          removeLoadingItem(id);
-        } else {
-          img.addEventListener('load', handleLoad);
-          img.addEventListener('error', handleError);
-        }
-      } else if (element.tagName === 'VIDEO') {
-        const video = element as HTMLVideoElement;
-        if (video.readyState >= 3) {
-          // Video already loaded enough data
-          removeLoadingItem(id);
-        } else {
-          video.addEventListener('loadeddata', handleLoad);
-          video.addEventListener('error', handleError);
-        }
-      }
-    });
-
-    // Cleanup function
+    // Cleanup
     return () => {
-      mediaElements.forEach((element, index) => {
-        const id = `media-${index}`;
-        removeLoadingItem(id);
-      });
+      clearTimeout(loadingTimer);
+      window.removeEventListener('load', handleWindowLoad);
     };
-  }, [addLoadingItem, removeLoadingItem]);
+  }, [setIsLoading]);
 };
 
 export const useImageLoader = (imageUrls: string[]) => {

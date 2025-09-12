@@ -43,24 +43,6 @@ const AppContent = () => {
   
   // Initialize media loader to detect all images and videos
   useMediaLoader();
-  
-  // Add a small delay to ensure DOM is ready
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // Check if there are any media elements to load
-      const images = document.querySelectorAll('img');
-      const videos = document.querySelectorAll('video');
-      
-      if (images.length === 0 && videos.length === 0) {
-        // No media to load, hide loading screen after a short delay
-        setTimeout(() => {
-          // This will be handled by the context
-        }, 1000);
-      }
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
