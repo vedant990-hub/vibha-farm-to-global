@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Plane } from 'lucide-react';
 import heroImage from '@/assets/hero-agriculture.jpg';
 import { Link } from 'react-router-dom';
+import Loader from '@/components/Loader';
 
 const HeroSection: React.FC = () => {
   const scrollToContact = () => {
@@ -12,6 +13,7 @@ const HeroSection: React.FC = () => {
     }
   };
 
+  const [isVideoReady, setIsVideoReady] = useState(false);
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Video Background */}
@@ -21,7 +23,11 @@ const HeroSection: React.FC = () => {
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover opacity-95"
+          onCanPlay={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+          onLoadedData={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+          onError={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
         >
           <source src="/output.mp4" type="video/mp4" />
           
@@ -31,6 +37,7 @@ const HeroSection: React.FC = () => {
             style={{ backgroundImage: `url(${heroImage})` }}
           ></div>
         </video>
+        {/* Local overlay no longer required since global overlay is used */}
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
