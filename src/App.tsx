@@ -15,6 +15,9 @@ import NotFound from "./pages/NotFound";
 import Layout from "@/components/Layout";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
+import { LoadingProvider, useLoading } from "./contexts/LoadingContext";
+import LoadingScreen from "./components/LoadingScreen";
+import { useMediaLoader } from "./hooks/useMediaLoader";
 
 const queryClient = new QueryClient();
 
@@ -34,27 +37,44 @@ const ScrollToTopOnRouteChange = () => {
   return null;
 };
 
+// Component that handles media loading detection
+const AppContent = () => {
+  const { isLoading } = useLoading();
+  
+  // Initialize media loader to detect all images and videos
+  useMediaLoader();
+
+  return (
+    <>
+      <LoadingScreen isVisible={isLoading} />
+      <ScrollToTopOnRouteChange />
+      <ScrollProgress />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home currentLang="en" />} />
+          <Route path="about" element={<About currentLang="en" />} />
+          <Route path="products" element={<Products currentLang="en" />} />
+          <Route path="global-reach" element={<GlobalReach currentLang="en" />} />
+          <Route path="testimonials" element={<Testimonials />} />
+          <Route path="contact" element={<Contact currentLang="en" />} />
+          <Route path="enquiry/:productId" element={<ProductEnquiry currentLang="en" />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTopOnRouteChange />
-        <ScrollProgress />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home currentLang="en" />} />
-            <Route path="about" element={<About currentLang="en" />} />
-            <Route path="products" element={<Products currentLang="en" />} />
-            <Route path="global-reach" element={<GlobalReach currentLang="en" />} />
-            <Route path="testimonials" element={<Testimonials currentLang="en" />} />
-            <Route path="contact" element={<Contact currentLang="en" />} />
-            <Route path="enquiry/:productId" element={<ProductEnquiry currentLang="en" />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <LoadingProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </LoadingProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

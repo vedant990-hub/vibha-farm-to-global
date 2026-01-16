@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
+=======
+import React, { useState } from 'react';
+>>>>>>> 6ebe0df705bafd398c3c63741ee5b395d6305f4d
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Plane } from 'lucide-react';
 import heroImage from '@/assets/hero-agriculture.jpg';
 import { Link } from 'react-router-dom';
+import Loader from '@/components/Loader';
 
 const HeroSection: React.FC = () => {
   const [enableVideo, setEnableVideo] = useState(false);
@@ -24,10 +29,12 @@ const HeroSection: React.FC = () => {
     }
   };
 
+  const [isVideoReady, setIsVideoReady] = useState(false);
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
+<<<<<<< HEAD
         {enableVideo ? (
           <video
             autoPlay
@@ -46,6 +53,28 @@ const HeroSection: React.FC = () => {
             style={{ backgroundImage: `url(${heroImage})` }}
           />
         )}
+=======
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-95"
+          onCanPlay={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+          onLoadedData={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+          onError={() => { setIsVideoReady(true); window.dispatchEvent(new Event('hero-video-ready')); }}
+        >
+          <source src="/output.mp4" type="video/mp4" />
+          
+          {/* Fallback to image if video fails to load */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          ></div>
+        </video>
+        {/* Local overlay no longer required since global overlay is used */}
+>>>>>>> 6ebe0df705bafd398c3c63741ee5b395d6305f4d
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
