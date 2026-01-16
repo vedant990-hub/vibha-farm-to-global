@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Plane } from 'lucide-react';
 import heroImage from '@/assets/hero-agriculture.jpg';
 import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
+  const [enableVideo, setEnableVideo] = useState(false);
+
+  useEffect(() => {
+    // Only play background video on larger screens and when user hasn't requested reduced motion
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const isLargeScreen = window.innerWidth >= 1024; // lg breakpoint
+
+    if (!prefersReducedMotion && isLargeScreen) {
+      setEnableVideo(true);
+    }
+  }, []);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -14,23 +26,26 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Video Background */}
+      {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-95"
-        >
-          <source src="/output.mp4" type="video/mp4" />
-          
-          {/* Fallback to image if video fails to load */}
+        {enableVideo ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster={heroImage}
+            className="absolute inset-0 w-full h-full object-cover opacity-95"
+          >
+            <source src="/output.mp4" type="video/mp4" />
+          </video>
+        ) : (
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${heroImage})` }}
-          ></div>
-        </video>
+          />
+        )}
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

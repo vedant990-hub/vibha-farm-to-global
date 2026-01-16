@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const quickLinks = [
     { name: 'About Us', to: '/about' },
     { name: 'Products', to: '/products' },
-    { name: 'Why Choose Us', to: '/why-choose' }, // This may need to be a separate page or removed if not routed
+    { name: 'Why Choose Us', to: '/testimonials' },
     { name: 'Global Presence', to: '/global-reach' },
     { name: 'Contact', to: '/contact' }
   ];
@@ -88,23 +88,52 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            {/* Export Markets */}
+            {/* Social Links */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">Export Markets</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-medium text-accent mb-1 sm:mb-2 text-sm sm:text-base">Middle East</h4>
-                  <p className="text-sm opacity-90">UAE, Saudi Arabia, Qatar, Kuwait, Oman</p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-accent mb-1 sm:mb-2 text-sm sm:text-base">South Asia</h4>
-                  <p className="text-sm opacity-90">Singapore, Malaysia, Bangladesh</p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-accent mb-1 sm:mb-2 text-sm sm:text-base">East Africa</h4>
-                  <p className="text-sm opacity-90">Kenya, Tanzania, Uganda</p>
-                </div>
-              </div>
+              <h3 className="font-heading font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+                Connect With Us
+              </h3>
+              <p className="text-sm opacity-90 mb-4">
+                Follow Vibha Global Exim Services on social media for updates and product highlights.
+              </p>
+              <ul className="wrapper footer-social">
+                <li>
+                  <a
+                    href="https://in.linkedin.com/in/vibha-global-exim-services-b3541a377"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="icon linkedin text-[#0A66C2]"
+                  >
+                    <span className="tooltip">LinkedIn</span>
+                    <Linkedin className="h-6 w-6" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/p/Vibha-Global-Exim-Services-61578641530058/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="icon facebook text-[#1877F2]"
+                  >
+                    <span className="tooltip">Facebook</span>
+                    <Facebook className="h-6 w-6" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/vibha120625/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="icon instagram text-[#E4405F]"
+                  >
+                    <span className="tooltip">Instagram</span>
+                    <Instagram className="h-6 w-6" />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -135,17 +164,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-                 {/* Bottom footer */}
-         <div className="border-t border-primary-foreground/20 py-6">
-           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-             <div className="text-sm opacity-90">
-               © 2025 Vibha Global Exim Services. All rights reserved.
-             </div>
-             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 mr-16">
-               <span className="text-sm opacity-90">Certified by FSSAI & APEDA</span>
-             </div>
-           </div>
-         </div>
+        {/* Bottom footer */}
+        <div className="border-t border-primary-foreground/20 py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+            <div className="text-sm opacity-90">
+              © 2025 Vibha Global Exim Services. All rights reserved.
+            </div>
+            <div className="text-sm opacity-90">
+              Certified by FSSAI & APEDA
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

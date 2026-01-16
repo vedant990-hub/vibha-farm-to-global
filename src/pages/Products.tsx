@@ -587,11 +587,15 @@ const Products: React.FC<ProductsProps> = ({ currentLang }) => {
             Get competitive quotes for all our premium products with flexible packaging and delivery options
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent-hover shadow-soft hover:scale-105 transition-all duration-200">
-              Request Product Catalog
+            <Button size="lg" variant="secondary" asChild className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent-hover shadow-soft hover:scale-105 transition-all duration-200">
+              <Link to="/contact">
+                Request Product Catalog
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-black hover:bg-white hover:text-primary hover:scale-105 transition-all duration-200">
-              Get Custom Quote
+            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto border-white text-black hover:bg-white hover:text-primary hover:scale-105 transition-all duration-200">
+              <Link to="/contact">
+                Get Custom Quote
+              </Link>
             </Button>
           </div>
         </div>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibha Enhanced Chatbot Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* Static chatbot styling - no animations */
+        @keyframes tooltip-fade-in {
+            0% { 
+                opacity: 0; 
+                transform: translateY(8px) scale(0.9); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .chatbot-tooltip {
+            animation: tooltip-fade-in 0.3s ease-out;
+        }
+
+        /* Remove all floating/bouncing animations */
+        .chatbot-button {
+            animation: none !important;
+        }
+
+        .chatbot-pulse-ring {
+            display: none !important;
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #1B4332, #2D5A47);
+        }
+
+        .shadow-strong {
+            box-shadow: 0 8px 24px rgba(27, 67, 50, 0.16);
+        }
+
+        /* Enhanced chatbot positioning for left corner */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        .chatbot-button {
+            background-color: #1B4332;
+            color: #FFC107;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 640px) {
+            .chatbot-container {
+                bottom: 16px;
+                left: 16px;
+            }
+            
+            .chatbot-button {
+                width: 52px;
+                height: 52px;
+            }
+        }
+
+        /* Ensure no overlap with other elements */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                bottom: 20px;
+                left: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Vibha Chatbot Button -->
+    <div id="vibha-chatbot-button" class="chatbot-container group">
+        <!-- Tooltip -->
+        <div id="chatbot-tooltip" class="chatbot-tooltip absolute bottom-16 left-0 bg-yellow-400 text-gray-800 px-3 py-2 rounded-lg text-sm font-medium shadow-lg transition-all duration-300 ease-out whitespace-nowrap opacity-0 transform translate-y-2 scale-95 pointer-events-none">
+            Chat with us 🤖
+            <!-- Tooltip arrow -->
+            <div class="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-yellow-400"></div>
+        </div>
+        
+        <!-- Enhanced Chat Button -->
+        <button
+            id="chatbot-btn"
+            onclick="openChatbot()"
+            class="chatbot-button h-14 w-14 rounded-full bg-gradient-primary hover:bg-green-700 shadow-strong hover:shadow-xl transition-all duration-300 ease-out group-hover:scale-110 group-active:scale-95 relative overflow-hidden flex items-center justify-center"
+        >
+            <!-- Robot Icon with enhanced styling -->
+            <div class="relative">
+                <i data-lucide="bot" class="h-7 w-7 text-white drop-shadow-sm"></i>
+                <!-- Subtle glow effect -->
+                <div class="absolute inset-0 h-7 w-7 bg-white opacity-20 rounded-full blur-sm"></div>
+            </div>
+            
+            <!-- Animated pulse ring -->
+            <div class="chatbot-pulse-ring absolute inset-0 rounded-full border-2 border-white/30 opacity-0 group-hover:opacity-100"></div>
+            
+            <!-- Status indicator -->
+            <div class="absolute -top-1 -right-1 h-4 w-4 bg-green-400 border-2 border-white rounded-full animate-pulse">
+                <div class="h-2 w-2 bg-white rounded-full absolute top-0.5 left-0.5 animate-pulse"></div>
+            </div>
+        </button>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let showTooltip = false;
+        const tooltip = document.getElementById('chatbot-tooltip');
+        const button = document.getElementById('chatbot-btn');
+
+        // Tooltip functionality
+        button.addEventListener('mouseenter', () => {
+            showTooltip = true;
+            tooltip.classList.remove('opacity-0', 'transform', 'translate-y-2', 'scale-95', 'pointer-events-none');
+            tooltip.classList.add('opacity-100', 'transform', 'translate-y-0', 'scale-100');
+        });
+
+        button.addEventListener('mouseleave', () => {
+            showTooltip = false;
+            tooltip.classList.remove('opacity-100', 'transform', 'translate-y-0', 'scale-100');
+            tooltip.classList.add('opacity-0', 'transform', 'translate-y-2', 'scale-95', 'pointer-events-none');
+        });
+
+        // Hide tooltip on mobile touch
+        button.addEventListener('touchstart', () => {
+            if (showTooltip) {
+                tooltip.classList.remove('opacity-100', 'transform', 'translate-y-0', 'scale-100');
+                tooltip.classList.add('opacity-0', 'transform', 'translate-y-2', 'scale-95', 'pointer-events-none');
+            }
+        });
+
+        // Chatbot functionality (replace with your chatbot implementation)
+        function openChatbot() {
+            // Replace this with your actual chatbot opening logic
+            alert('🤖 Vibha Chatbot is ready to assist!\n\nFeatures:\n• View our export products\n• Contact our team\n• Get shipping quotes\n• Learn about our company\n\nContact: +91 98331 66617\nEmail: info@vibhaglobaleximservices.com');
+            
+            // Example: Open your existing chatbot
+            // if (window.openChatbot) {
+            //     window.openChatbot();
+            // }
+        }
+
+        // Optional: Add click analytics
+        button.addEventListener('click', () => {
+            console.log('Vibha Chatbot clicked');
+            // Add your analytics tracking here
+        });
+    </script>
+</body>
+</html>

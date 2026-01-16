@@ -17,7 +17,7 @@ const ScrollToTopFloat: React.FC = () => {
 
   // Set the scroll event listener
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
     };

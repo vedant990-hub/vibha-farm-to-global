@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibha Chatbot Embed</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1B4332',
+                        secondary: '#D8F3DC',
+                        accent: '#FFC107',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chatbot-container {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .shadow-strong {
+            box-shadow: 0 8px 24px rgba(27, 67, 50, 0.16);
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #1B4332, #2D5A47);
+        }
+        .bg-gradient-accent {
+            background: linear-gradient(135deg, #FFC107, #FFB300);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1B4332;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #2D5A47;
+        }
+        
+        /* Static chatbot styling - no animations */
+        @keyframes tooltip-fade-in {
+            0% { 
+                opacity: 0; 
+                transform: translateY(8px) scale(0.9); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .chatbot-tooltip {
+            animation: tooltip-fade-in 0.3s ease-out;
+        }
+
+        /* Remove all floating/bouncing animations */
+        .chatbot-button {
+            animation: none !important;
+        }
+
+        .chatbot-pulse-ring {
+            display: none !important;
+        }
+
+        /* Enhanced chatbot positioning for left corner */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        .chatbot-button {
+            background-color: #004d00;
+            color: #FFD700;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+            animation: none !important;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.05);
+            background-color: #FFD700;
+            color: #004d00;
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 640px) {
+            .chatbot-container {
+                bottom: 16px;
+                left: 16px;
+            }
+            
+            .chatbot-button {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Ensure no overlap with other elements */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                bottom: 20px;
+                left: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="vibha-chatbot"></div>
+
+    <script type="text/babel">
+        const { useState, useRef, useEffect } = React;
+        const { MessageCircle, X, Send, User, Bot, Mail, Phone } = lucide;
+
+        const VibhaChatbot = () => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [messages, setMessages] = useState([
+                {
+                    id: '1',
+                    text: '👋 Hi there! Welcome to Vibha Exim Global Services. How can we help you today?',
+                    isUser: false,
+                    timestamp: new Date()
+                }
+            ]);
+            const [inputText, setInputText] = useState('');
+            const [isTyping, setIsTyping] = useState(false);
+            const [showContactForm, setShowContactForm] = useState(false);
+            const [showTooltip, setShowTooltip] = useState(false);
+            const [contactForm, setContactForm] = useState({
+                name: '',
+                email: '',
+                message: ''
+            });
+            const messagesEndRef = useRef(null);
+
+            const quickReplies = [
+                { text: 'View our export products', action: 'products' },
+                { text: 'Contact our team', action: 'contact' },
+                { text: 'Get a shipping quote', action: 'quote' },
+                { text: 'Know more about our company', action: 'about' }
+            ];
+
+            const predefinedResponses = {
+                products: `🌾 **Our Premium Export Products:**
+
+• **Pulses & Lentils**: Toor Dal, Moong Dal, Chana Dal, Masoor Dal
+• **Rice Varieties**: Basmati Rice, Non-Basmati Rice
+• **Spices & Seasonings**: Turmeric Powder, Red Chili Powder, Cumin Seeds, Coriander Seeds
+• **Health Products**: Ashwagandha Root, Giloy, Tulsi Leaves, Amla Powder, Moringa Powder
+• **Natural Products**: Pure Honey
+
+All our products are FSSAI and APEDA certified, ensuring premium quality for international markets. Would you like to know more about any specific product?`,
+                
+                contact: `📞 **Get in Touch with Our Team:**
+
+**Direct Contact:**
+• Phone: +91 98331 66617
+• Email: info@vibhaglobaleximservices.com
+• WhatsApp: Available 24/7
+
+**Office Location:**
+Mumbai, Maharashtra 400101, India
+
+**Business Hours:**
+Monday - Friday: 9:00 AM - 6:00 PM IST
+Saturday: 9:00 AM - 2:00 PM IST
+
+Would you like me to connect you with our team for immediate assistance?`,
+                
+                quote: `📋 **Shipping Quote Request:**
+
+To provide you with an accurate shipping quote, I'll need some information:
+
+• Product type and quantity
+• Destination country
+• Preferred shipping method (Air/Sea)
+• Delivery timeline requirements
+
+**Our Export Markets:**
+• Middle East: UAE, Saudi Arabia, Qatar, Kuwait, Oman
+• South Asia: Singapore, Malaysia, Bangladesh  
+• East Africa: Kenya, Tanzania, Uganda
+
+Would you like to fill out a detailed quote form or speak with our logistics team?`,
+                
+                about: `🏢 **About Vibha Exim Global Services:**
+
+We are a trusted exporter of premium Indian agricultural products, specializing in:
+
+**Our Expertise:**
+• 10+ years in international trade
+• FSSAI & APEDA certified products
+• Quality assurance at every step
+• Reliable supply chain management
+• Competitive pricing
+
+**Why Choose Us:**
+• Direct sourcing from farmers
+• Strict quality control measures
+• Flexible payment terms
+• Timely delivery commitments
+• 24/7 customer support
+
+We serve importers across Middle East, South Asia, and East Africa with excellence and reliability.`
+            };
+
+            const scrollToBottom = () => {
+                messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            useEffect(() => {
+                scrollToBottom();
+            }, [messages]);
+
+            const generateAIResponse = (userMessage) => {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('quote')) {
+                    return "For detailed pricing information, I'll connect you with our sales team. Please provide your contact details and product requirements.";
+                }
+                
+                if (lowerMessage.includes('quality') || lowerMessage.includes('certification')) {
+                    return "All our products are FSSAI and APEDA certified, ensuring premium quality. We maintain strict quality control measures from sourcing to packaging.";
+                }
+                
+                if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery')) {
+                    return "We offer flexible shipping options including air and sea freight. Delivery times vary by destination (5-15 days for air, 15-45 days for sea).";
+                }
+                
+                if (lowerMessage.includes('payment') || lowerMessage.includes('terms')) {
+                    return "We offer flexible payment terms including LC, TT, and advance payment options. Our finance team can discuss the best terms for your business.";
+                }
+                
+                if (lowerMessage.includes('minimum') || lowerMessage.includes('order')) {
+                    return "Minimum order quantities vary by product. For bulk orders, we offer competitive pricing. Please specify your requirements for a custom quote.";
+                }
+                
+                return "Thank you for your question! I understand you're interested in our services. Let me connect you with our expert team who can provide detailed assistance. Would you like to share your contact information for a personalized response?";
+            };
+
+            const handleSendMessage = () => {
+                if (!inputText.trim()) return;
+
+                const userMessage = {
+                    id: Date.now().toString(),
+                    text: inputText,
+                    isUser: true,
+                    timestamp: new Date()
+                };
+
+                setMessages(prev => [...prev, userMessage]);
+                setInputText('');
+                setIsTyping(true);
+
+                setTimeout(() => {
+                    const aiResponse = generateAIResponse(inputText);
+                    const botMessage = {
+                        id: (Date.now() + 1).toString(),
+                        text: aiResponse,
+                        isUser: false,
+                        timestamp: new Date()
+                    };
+                    
+                    setMessages(prev => [...prev, botMessage]);
+                    setIsTyping(false);
+                }, 1500);
+            };
+
+            const handleQuickReply = (action) => {
+                const quickReplyMessage = {
+                    id: Date.now().toString(),
+                    text: action,
+                    isUser: true,
+                    timestamp: new Date()
+                };
+
+                setMessages(prev => [...prev, quickReplyMessage]);
+
+                setTimeout(() => {
+                    const response = predefinedResponses[action] || "I'm here to help! Could you please rephrase your question?";
+                    const botMessage = {
+                        id: (Date.now() + 1).toString(),
+                        text: response,
+                        isUser: false,
+                        timestamp: new Date()
+                    };
+                    
+                    setMessages(prev => [...prev, botMessage]);
+                }, 500);
+            };
+
+            const handleContactFormSubmit = () => {
+                if (!contactForm.name || !contactForm.email || !contactForm.message) {
+                    return;
+                }
+
+                // Simulate sending email
+                const successMessage = {
+                    id: Date.now().toString(),
+                    text: `Thank you, ${contactForm.name}! Your message has been sent to our team. We'll get back to you within 24 hours at ${contactForm.email}.`,
+                    isUser: false,
+                    timestamp: new Date()
+                };
+                
+                setMessages(prev => [...prev, successMessage]);
+                setShowContactForm(false);
+                setContactForm({ name: '', email: '', message: '' });
+            };
+
+            const handleKeyPress = (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSendMessage();
+                }
+            };
+
+            return (
+                <div className="chatbot-container">
+                    {/* Chat Button */}
+                    {!isOpen && (
+                        <div className="chatbot-container group">
+                            {/* Tooltip */}
+                            <div className={`chatbot-tooltip absolute bottom-16 left-0 bg-yellow-400 text-gray-800 px-3 py-2 rounded-lg text-sm font-medium shadow-lg transition-all duration-300 ease-out whitespace-nowrap ${
+                                showTooltip 
+                                    ? 'opacity-100 transform translate-y-0 scale-100' 
+                                    : 'opacity-0 transform translate-y-2 scale-95 pointer-events-none'
+                            }`}>
+                                Chat with us 🤖
+                                {/* Tooltip arrow */}
+                                <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-yellow-400"></div>
+                            </div>
+                            
+                            {/* Static Chat Button */}
+                            <button
+                                onClick={() => setIsOpen(true)}
+                                onMouseEnter={() => setShowTooltip(true)}
+                                onMouseLeave={() => setShowTooltip(false)}
+                                onTouchStart={() => setShowTooltip(false)}
+                                className="chatbot-button"
+                                aria-label="Open chatbot"
+                            >
+                                <Bot className="h-6 w-6" />
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Chat Window */}
+                    {isOpen && (
+                        <div className="fixed bottom-6 left-6 z-[1002] w-80 h-96 md:w-96 md:h-[500px] bg-white shadow-strong border border-gray-200 rounded-xl overflow-hidden flex flex-col">
+                            {/* Header */}
+                            <div className="bg-[#004d00] text-white p-4 rounded-t-xl flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 bg-[#FFD700] rounded-full flex items-center justify-center">
+                                        <Bot className="h-4 w-4 text-[#004d00]" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-sm font-semibold">Vibha Bot 🤖</h3>
+                                        <span className="text-xs text-green-200">Online</span>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-white hover:bg-white/20 p-1 rounded-full transition-colors"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+
+                            {/* Messages Container */}
+                            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+                                {messages.map((message) => (
+                                    <div
+                                        key={message.id}
+                                        className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                                    >
+                                        <div className={`max-w-[80%] ${message.isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+                                            <div className={`rounded-2xl p-3 shadow-sm ${
+                                                message.isUser 
+                                                    ? 'bg-[#004d00] text-white rounded-br-md' 
+                                                    : 'bg-[#FFD700] text-[#004d00] rounded-bl-md'
+                                            }`}>
+                                                <p className="text-sm font-medium whitespace-pre-wrap leading-relaxed">{message.text}</p>
+                                                <p className={`text-xs mt-1 ${
+                                                    message.isUser ? 'text-green-200' : 'text-green-700'
+                                                }`}>
+                                                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                
+                                {isTyping && (
+                                    <div className="flex justify-start">
+                                        <div className="flex gap-2">
+                                            <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center">
+                                                <Bot className="h-3 w-3" />
+                                            </div>
+                                            <div className="bg-gray-100 text-gray-700 rounded-lg p-3">
+                                                <div className="flex space-x-1">
+                                                    <div className="w-2 h-2 bg-current rounded-full animate-bounce"></div>
+                                                    <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                                    <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                <div ref={messagesEndRef} />
+                            </div>
+
+                            {/* Quick Replies */}
+                            {messages.length <= 1 && (
+                                <div className="p-4 border-t border-gray-200">
+                                    <p className="text-xs text-gray-500 mb-2">Quick actions:</p>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {quickReplies.map((reply, index) => (
+                                            <button
+                                                key={index}
+                                                onClick={() => handleQuickReply(reply.action)}
+                                                className="text-xs h-8 px-3 border border-gray-300 rounded hover:bg-accent hover:text-gray-800 transition-colors"
+                                            >
+                                                {reply.text}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Contact Form */}
+                            {showContactForm && (
+                                <div className="p-4 border-t border-gray-200 bg-gray-50">
+                                    <h4 className="font-medium text-sm mb-3">Connect with our team:</h4>
+                                    <div className="space-y-2">
+                                        <input
+                                            type="text"
+                                            placeholder="Your name"
+                                            value={contactForm.name}
+                                            onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+                                            className="w-full h-8 px-3 text-xs border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                                        />
+                                        <input
+                                            type="email"
+                                            placeholder="Email address"
+                                            value={contactForm.email}
+                                            onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
+                                            className="w-full h-8 px-3 text-xs border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                                        />
+                                        <textarea
+                                            placeholder="Your message"
+                                            value={contactForm.message}
+                                            onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+                                            className="w-full h-16 px-3 py-2 text-xs border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                                        />
+                                        <div className="flex gap-2">
+                                            <button
+                                                onClick={handleContactFormSubmit}
+                                                className="h-8 px-4 text-xs bg-gradient-accent text-gray-800 rounded hover:bg-yellow-500 transition-colors"
+                                            >
+                                                Send Message
+                                            </button>
+                                            <button
+                                                onClick={() => setShowContactForm(false)}
+                                                className="h-8 px-4 text-xs border border-gray-300 rounded hover:bg-gray-100 transition-colors"
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Input */}
+                            {!showContactForm && (
+                                <div className="p-4 border-t border-gray-200">
+                                    <div className="flex gap-2">
+                                        <input
+                                            value={inputText}
+                                            onChange={(e) => setInputText(e.target.value)}
+                                            onKeyPress={handleKeyPress}
+                                            placeholder="Type your message..."
+                                            className="flex-1 h-8 px-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                                        />
+                                        <button
+                                            onClick={handleSendMessage}
+                                            className="h-8 w-8 bg-gradient-accent rounded flex items-center justify-center hover:bg-yellow-500 transition-colors"
+                                        >
+                                            <Send className="h-3 w-3 text-gray-800" />
+                                        </button>
+                                    </div>
+                                    <div className="flex justify-between mt-2">
+                                        <button
+                                            onClick={() => setShowContactForm(true)}
+                                            className="h-6 text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1"
+                                        >
+                                            <Mail className="h-3 w-3" />
+                                            Contact Support
+                                        </button>
+                                        <div className="flex gap-1 items-center">
+                                            <Phone className="h-3 w-3 text-gray-500" />
+                                            <span className="text-xs text-gray-500">+91 98331 66617</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<VibhaChatbot />, document.getElementById('vibha-chatbot'));
+    </script>
+</body>
+</html>
